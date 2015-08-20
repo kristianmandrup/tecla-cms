@@ -1,10 +1,10 @@
 module Cms::Document
+  extend ActiveSupport::Concern
 
-  def self.included(clazz)
-    clazz.include Mongoid::Document
-    clazz.include Mongoid::Timestamps
-    clazz.include Mongoid::History::Trackable
-    clazz.include Mongoid::Orderable
+  included do
+    include Mongoid::Document
+    include Mongoid::Timestamps
+    include Mongoid::History::Trackable
+    include Mongoid::Orderable
   end
-
 end
