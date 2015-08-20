@@ -1,6 +1,10 @@
 class Cms::Image
-  include Cms::Document
-  include Cms::Listable
+
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::History::Trackable
+  include Mongoid::Orderable
+
   field :mime_description,   type: String
   field :title,              type: String, localize: true
   field :type,               type: String

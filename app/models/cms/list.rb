@@ -1,6 +1,8 @@
 class Cms::List
-  include Cms::Document
-  #include Cms::Listable
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::History::Trackable
+  include Mongoid::Orderable
 
   field :name,        type: String, localize: true
   field :root,        type: Boolean

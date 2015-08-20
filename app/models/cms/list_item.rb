@@ -1,6 +1,8 @@
 class Cms::ListItem
-  include Cms::Document
-  include Cms::Listable
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::History::Trackable
+  include Mongoid::Orderable
 
   
   field :label,       type: String, localize: true

@@ -2,8 +2,18 @@ PATH
   remote: .
   specs:
     tecla_cms (0.0.1)
-      mongoid
+      bson_ext
+      cancancan (~> 1.12.0)
+      carrierwave
+      carrierwave-mongoid
+      devise
+      fog
+      fog-aws
+      mongoid (~> 5.0.0.beta)
+      mongoid-history
+      mongoid_orderable
       rails (~> 4.2.3)
+      rolify
 
 GEM
   remote: https://rubygems.org/

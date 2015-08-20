@@ -1,7 +1,9 @@
 class Cms::Block
-  include Cms::Document
-  include Cms::Listable
-  include Cms::Publishable
+
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::History::Trackable
+  include Mongoid::Orderable
 
   CATEGORIES = %w(Apparel Media Software Sports Agri Education)
   TAGS = %w(Banner, Football)
