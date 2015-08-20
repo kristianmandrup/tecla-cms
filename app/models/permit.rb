@@ -1,17 +1,21 @@
 class Permit
-  def initialize
+  attr_reader :role
+
+  def initialize role
+    @role = role
   end
 
   # default empty access method
-  def access ability
-  end
+  # def access ability
+  # end
 
   def self.retrieve_for role
     Permit::Registry.instance.retrieve(role)
   end
 
   def self.create role, &block
-    permit = define_method(:access) do |ability|
+    permit = Permit.new role
+    permit.define_singleton_method(:access) do |ability|
       # http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/
       # Having AND eating the cake :)
       if block_given?

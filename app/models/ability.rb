@@ -2,11 +2,16 @@ class Ability
   include CanCan::Ability
 
   def permit_for role
-    Permit.retrieve_for(role).access(this)
+    permit = Permit.retrieve_for(role)
+    return unless permit
+    permit.access(self)
   end
 
   def initialize(user)
-    permit_for(user.role) || permit_for(:default)
+    permit_for(:default)
+    user.roles.each do |role|
+      permit_for(role.name.to_sym)
+    end
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.
