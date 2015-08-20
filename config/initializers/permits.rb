@@ -1,0 +1,26 @@
+blocks = [Cms::Block, Cms::Image]
+
+Permit.create(:super_admin) do
+  can :manage, :all
+end
+
+Permit.create(:admin) do
+  cannot :manage, User
+  can :manage, blocks
+end
+
+Permit.create(:publisher) do
+  cannot :manage, User
+  can [:manage, :publish], blocks
+end
+
+# stage means stage for review by publisher
+Permit.create(:author) do
+  cannot :manage, User
+  can [:create, :edit, :add, :stage], blocks
+end
+
+Permit.create(:default) do
+  cannot :manage, User
+  can [:read, :edit], blocks
+end

@@ -1,0 +1,24 @@
+class Cms::Image
+  include Cms::Document
+  include Cms::Listable
+  field :mime_description,   type: String
+  field :title,              type: String, localize: true
+  field :type,               type: String
+  field :categories,         type: Array
+  field :tags,               type: Array
+  field :description,        type: String
+  field :content,            type: String
+
+  attr_accessor :picture, :image_cache
+  mount_uploader :picture, ImageUploader
+  
+  validates :title, presence: true
+  belongs_to :imageable, polymorphic: true
+
+  # track history
+  track_history     :on => [:title, :content]
+  
+  # ordered list implementation for your mongoid models
+  orderable
+
+end
