@@ -7,11 +7,11 @@ require "tecla_cms/version"
 Gem::Specification.new do |s|
   s.name        = "tecla_cms"
   s.version     = TeclaCms::VERSION
-  s.authors     = [""]
-  s.email       = [""]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of TeclaCms."
-  s.description = "TODO: Description of TeclaCms."
+  s.authors     = ["Ankush Kataria"]
+  s.email       = ["katariyaankush574@gmail.com"]
+  s.homepage    = "http://www.example.com"
+  s.summary     = "TeclaCms Engine."
+  s.description = "Description of TeclaCms."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
