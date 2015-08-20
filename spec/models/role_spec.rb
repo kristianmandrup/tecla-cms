@@ -14,4 +14,40 @@ RSpec.describe 'User roles', type: :model do
       expect(subject.has_role? :super_admin).to be true
     end
   end
+
+  context 'admin user' do
+    subject { user }
+
+    before(:each) do
+      user.add_role :admin
+    end
+
+    it "should have :admin role" do
+      expect(subject.has_role? :admin).to be true
+    end
+  end
+
+  context 'Publisher user' do
+    subject { user }
+
+    before(:each) do
+      user.add_role :publisher
+    end
+
+    it "should have :publisher role" do
+      expect(subject.has_role? :publisher).to be true
+    end
+  end
+
+  context 'author user' do
+    subject { user }
+
+    before(:each) do
+      user.add_role :author
+    end
+
+    it "should have :author role" do
+      expect(subject.has_role? :author).to be true
+    end
+  end
 end
