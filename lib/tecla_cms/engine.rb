@@ -1,3 +1,4 @@
+require 'grape'
 require 'devise' 
 require 'carrierwave'
 require 'carrierwave/mongoid'
