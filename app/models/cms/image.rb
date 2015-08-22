@@ -1,5 +1,4 @@
 class Cms::Image
-
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
@@ -15,13 +14,13 @@ class Cms::Image
 
   attr_accessor :picture, :image_cache
   mount_uploader :picture, ImageUploader
-  
+
   validates :title, presence: true
   belongs_to :imageable, polymorphic: true
 
   # track history
   track_history     :on => [:title, :content]
-  
+
   # ordered list implementation for your mongoid models
   orderable
 
