@@ -3,7 +3,7 @@ module Api
     class Blocks < Grape::API
       version 'v1'
       format :json
-
+      
       resource :blocks do
         
         desc "Return list of all blocks"
@@ -12,6 +12,9 @@ module Api
         end
         
         desc "create a new block"
+        before do
+          valid_token?
+        end
         params do
           requires :title, type: String
         end
@@ -37,6 +40,9 @@ module Api
         end
         
         desc "update a block"
+        before do
+          valid_token?
+        end
         params do
           requires :id, type: String
           requires :title, type: String
@@ -51,11 +57,14 @@ module Api
             summary: params[:summary],
             content: params[:content],
             description: params[:description]
-          
           })
+          {:success => true, :message => "Block has been updated!"}
         end
         
         desc "delete a block"
+        before do
+          valid_token?
+        end
         params do
           requires :id, type: String
         end

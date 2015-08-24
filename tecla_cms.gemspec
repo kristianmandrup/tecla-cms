@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-history'
   s.add_dependency 'mongoid_orderable'
   s.add_dependency 'grape'
+  s.add_dependency 'jwt'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'faker'
   s.add_development_dependency 'rspec-rails'

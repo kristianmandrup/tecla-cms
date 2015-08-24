@@ -12,6 +12,9 @@ module Api
         end
         
         desc "create a new list"
+        before do
+          valid_token?
+        end
         params do
           requires :name, type: String
         end
@@ -34,6 +37,9 @@ module Api
         end
         
         desc "update a list"
+        before do
+          valid_token?
+        end
         params do
           requires :id, type: String
           requires :name, type: String
@@ -49,6 +55,9 @@ module Api
         end
         
         desc "delete a list"
+        before do
+          valid_token?
+        end
         params do
           requires :id, type: String
         end
