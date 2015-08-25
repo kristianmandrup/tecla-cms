@@ -1,11 +1,6 @@
-class Cms::NamedItem
+class Cms::NamedItem < Cms::CompositeHashItem
 
-  include Mongoid::Document
-  include Mongoid::Timestamps
   #include Cms::Listable
-
-  field :name,   type: String
-
-  validates :name, presence: true, uniqueness: true
+  belongs_to :composite_hash, polymorphic: true
   
 end

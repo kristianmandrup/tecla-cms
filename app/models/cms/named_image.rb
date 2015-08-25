@@ -1,5 +1,5 @@
 class Cms::NamedImage < Cms::NamedItem
 
-  belongs_to :image, class_name: "Cms::NamedImage", inverse_of: :images
+  has_one :image, class_name: "Cms::Image", inverse_of: :named_image
   
 end

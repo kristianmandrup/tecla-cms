@@ -9,7 +9,7 @@ RSpec.describe Cms::ListItem, type: :model do
   end
 
   it "should require a label" do
-    list_item.label = nil
+    list_item.name = nil
     expect(list_item).to be_invalid
   end  
 

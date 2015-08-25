@@ -23,6 +23,7 @@ class Cms::Image
 
   # ordered list implementation for your mongoid models
   orderable
-
-  has_many :named_images, class_name: "Cms::NamedImage", inverse_of: :image
+  
+  has_and_belongs_to_many :image_lists, class_name: "Cms::ImageList", inverse_of: :images
+  belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
 end
