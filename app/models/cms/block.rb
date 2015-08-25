@@ -29,4 +29,6 @@ class Cms::Block
   # ordered list implementation for your mongoid models
   orderable
 
+  has_many :named_blocks, class_name: "Cms::NamedBlock", inverse_of: :block
+
 end

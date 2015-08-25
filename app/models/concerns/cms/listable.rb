@@ -1,9 +1,9 @@
 module Cms::Listable
-  include Cms::Publishable
   extend ActiveSupport::Concern
+  #include Cms::Publishable
 
   included do
-    #clazz.embedded_in :listable, polymorphic: true
+    embedded_in :listable, class_name: "Cms::List", polymorphic: true
     field :name, type: String
     field :order, type: Integer
     field :description, type: Array

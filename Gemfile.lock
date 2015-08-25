@@ -10,6 +10,7 @@ PATH
       fog
       fog-aws
       grape
+      jwt
       mongoid (~> 5.0.0.beta)
       mongoid-history
       mongoid_orderable
@@ -222,6 +223,7 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.0)
     json (1.8.3)
+    jwt (1.5.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -353,3 +355,6 @@ DEPENDENCIES
   spring
   tecla_cms!
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6

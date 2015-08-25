@@ -10,7 +10,7 @@ class Cms::List
   field :label,       type: String
   field :tags,        type: Array
 
-  #embeds_many :items, as: :listable
+  embeds_many :named_items, class_name: "Cms::NamedItem", as: :listable
   validates :name, presence: true
 
   # Track history
