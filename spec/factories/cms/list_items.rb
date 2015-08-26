@@ -5,6 +5,6 @@ FactoryGirl.define do
     label { Faker::Name.name }
     link { Faker::Name.name }
     name { Faker::Name.name }
-    composite_items {FactoryGirl.create(:list)}
+    
   end
 end

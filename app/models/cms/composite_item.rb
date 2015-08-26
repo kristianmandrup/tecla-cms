@@ -11,7 +11,6 @@ class Cms::CompositeItem
   field :label,       type: String
   field :tags,        type: Array
 
-  embeds_many :named_items, class_name: "Cms::NamedItem", as: :listable
   validates :name, presence: true
 
   # Track history
@@ -21,6 +20,6 @@ class Cms::CompositeItem
   # ordered list implementation for your mongoid models
   orderable
 
-  belongs_to :composite_items, polymorphic: true
+  belongs_to :list, polymorphic: true
  
 end

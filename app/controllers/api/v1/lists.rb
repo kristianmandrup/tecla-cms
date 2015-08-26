@@ -3,12 +3,40 @@ module Api
     class Lists < Grape::API
       version 'v1'
       format :json
+      
+      helpers do
+        def get_class_name(type)
+          case type
+          when "hash"
+            return Cms::HashList
+          when "block"
+            return Cms::BlockList
+          when "image"
+            return Cms::ImageList
+          else
+            return Cms::List
+          end
+        end
+      end
 
       resource :lists do
         
         desc "Return all lists"
+         params do
+          #requires :type, type: String
+        end
         get do
-          Cms::List.all
+          @lists = List.all
+        end
+        
+        desc "show a list"
+        params do
+          requires :id, type: String
+          requires :type, type: String
+        end
+        get ':id' do
+          @list = get_class_name(params[:type]).find_by(:name => params[:id])
+          {@list.name => @list.set_hash}
         end
         
         desc "create a new list"
@@ -26,14 +54,6 @@ module Api
             tags: params[:tags],
             label: params[:label]
           })
-        end
-        
-        desc "show a list"
-        params do
-          requires :id, type: String
-        end
-        get ':id' do
-          Cms::List.find(params[:id])
         end
         
         desc "update a list"

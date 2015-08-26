@@ -5,4 +5,9 @@ class Cms::CompositeHashItem
 
   validates :name, presence: true, uniqueness: true
   
+  belongs_to :composite_hash, polymorphic: true
+  
+  
+  
+  
 end
