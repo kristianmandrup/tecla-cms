@@ -23,10 +23,16 @@ module Api
         
         desc "Return all lists"
          params do
-          #requires :type, type: String
+          requires :type, type: String
         end
         get do
-          @lists = List.all
+          @lists = get_class_name(params[:type]).all
+          #TODO: will define the below code in model
+          list_array = []
+          @lists.each do |list|
+            list_array << {list.name => list.set_hash}
+          end
+          list_array
         end
         
         desc "show a list"
