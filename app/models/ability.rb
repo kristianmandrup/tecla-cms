@@ -8,7 +8,7 @@ class Ability
   end
 
   def initialize(user)
-    permit_for(:default)
+    permit_for(:default) if user.roles.blank?
     user.roles.each do |role|
       permit_for(role.name.to_sym)
     end

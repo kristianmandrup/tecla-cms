@@ -1,4 +1,4 @@
-blocks = [Cms::Block, Cms::Image]
+blocks = [Cms::Block, Cms::Image, Cms::List]
 
 Permit.create(:super_admin) do
   can :manage, :all

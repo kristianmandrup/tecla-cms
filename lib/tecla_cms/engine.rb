@@ -1,5 +1,6 @@
 require 'grape'
 require 'devise' 
+require 'cancancan'
 require 'carrierwave'
 require 'carrierwave/mongoid'
 require 'rolify'

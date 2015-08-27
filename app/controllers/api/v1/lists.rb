@@ -35,13 +35,18 @@ module Api
           requires :name, type: String
         end
         post do
-          Cms::List.create!({
-            name: params[:name],
-            root: params[:root],
-            child_type: params[:child_type],
-            tags: params[:tags],
-            label: params[:label]
-          })
+          if load_and_authorize(current_api_user, :create, Cms::List)  
+            Cms::List.create!({
+              name: params[:name],
+              root: params[:root],
+              child_type: params[:child_type],
+              tags: params[:tags],
+              label: params[:label]
+            })
+            {:success => true, :message => "list has been created!"}
+          else
+            {error_message: 'Access denied, you are not authorize to create list'}
+          end
         end
         
         desc "update a list"
@@ -50,13 +55,18 @@ module Api
           requires :name, type: String
         end
         put ':id' do
-          Cms::List.find(params[:id]).update({
-            name: params[:name],
-            root: params[:root],
-            child_type: params[:child_type],
-            tags: params[:tags],
-            label: params[:label]
-          })
+          if load_and_authorize(current_api_user, :update, Cms::List)
+            Cms::List.find(params[:id]).update({
+              name: params[:name],
+              root: params[:root],
+              child_type: params[:child_type],
+              tags: params[:tags],
+              label: params[:label]
+            })
+            {:success => true, :message => "list has been updated!"}
+          else
+            {error_message: 'Access denied, you are not authorize to update list'}
+          end
         end
         
         desc "delete a list"
@@ -64,7 +74,12 @@ module Api
           requires :id, type: String
         end
         delete ':id' do
-          Cms::List.find(params[:id]).destroy!
+          if load_and_authorize(current_api_user, :destroy, Cms::List)
+            Cms::List.find(params[:id]).destroy!
+            {:success => true, :message => "list has been deleted!"}
+          else
+            {error_message: 'Access denied, you are not authorize to delete list'}
+          end
         end
       end
     end
