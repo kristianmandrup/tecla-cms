@@ -6,7 +6,7 @@ class Cms::BlockList < Cms::CompositeHashItem
   
   def set_hash
     hash = {}
-    hash[self.name] = self.blocks.collect{ |block| block.as_json(only: [:name])}
+    hash[self.name] = self.blocks.collect{ |block| block.as_json(only: [:title])}
   end
   
 end

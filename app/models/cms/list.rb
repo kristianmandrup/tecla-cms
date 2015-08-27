@@ -4,12 +4,13 @@ class Cms::List < Cms::CompositeItem
 
   def set_hash
     hash = {}
+    hash["list_items"] = []
     composite_items.each do |item|
-      hash[item.name] = {}
       if item._type == "Cms::List"
+        hash[item.name] = {}
         hash[item.name] = item.set_hash
       elsif item._type == "Cms::ListItem"
-        hash[item.name] = item.name
+        hash["list_items"] << item.as_json(only: [:name])
       end
     end
     hash

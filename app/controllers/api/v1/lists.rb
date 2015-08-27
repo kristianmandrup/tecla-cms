@@ -6,49 +6,31 @@ module Api
       
       helpers do
         def get_class_name(type)
-          case type
-          when "hash"
-            return Cms::HashList
-          when "block"
-            return Cms::BlockList
-          when "image"
-            return Cms::ImageList
-          else
-            return Cms::List
-          end
+          return "Cms::List".constantize if (type.blank? || type == "list") 
+          return "Cms::#{type.capitalize}List".constantize
         end
       end
 
       resource :lists do
         
         desc "Return all lists"
-         params do
-          requires :type, type: String
-        end
         get do
-          @lists = get_class_name(params[:type]).all
-          #TODO: will define the below code in model
-          list_array = []
-          @lists.each do |list|
-            list_array << {list.name => list.set_hash}
-          end
-          list_array
+          get_class_name(params[:type]).get_all_lists
         end
         
         desc "show a list"
         params do
           requires :id, type: String
-          requires :type, type: String
         end
         get ':id' do
-          @list = get_class_name(params[:type]).find_by(:name => params[:id])
-          {@list.name => @list.set_hash}
+          list = get_class_name(params[:type]).get_list_by_name(params[:id])
+          {list.name => list.set_hash}
         end
         
-        desc "create a new list"
         before do
           valid_token?
         end
+        desc "create a new list"
         params do
           requires :name, type: String
         end
@@ -63,9 +45,6 @@ module Api
         end
         
         desc "update a list"
-        before do
-          valid_token?
-        end
         params do
           requires :id, type: String
           requires :name, type: String
@@ -81,9 +60,6 @@ module Api
         end
         
         desc "delete a list"
-        before do
-          valid_token?
-        end
         params do
           requires :id, type: String
         end

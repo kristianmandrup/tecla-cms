@@ -5,7 +5,7 @@ class Cms::ImageList < Cms::CompositeHashItem
   
   def set_hash
     hash = {}
-    hash[self.name] = self.images.collect{ |img| img.as_json(only: [:name])}
+    hash[self.name] = self.images.collect{ |img| img.as_json(only: [:title])}
   end
   
 end
