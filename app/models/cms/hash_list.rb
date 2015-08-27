@@ -1,7 +1,7 @@
 class Cms::HashList < Cms::CompositeHashItem
 
   has_many :composite_hash_items , as: :composite_hash
-  
+  belongs_to :page, class_name: "Cms::Page"
   
   
   def set_hash

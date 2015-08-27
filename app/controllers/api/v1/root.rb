@@ -16,7 +16,7 @@ module Api
     end
       mount Api::V1::Blocks
       mount Api::V1::Lists
-      mount Api::V1::Images
+      mount Api::V1::Pages
     end
   end
 end
