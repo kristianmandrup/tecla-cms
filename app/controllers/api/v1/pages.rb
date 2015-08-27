@@ -20,7 +20,7 @@ module Api
         end
         get ':id' do
           response = Cms::Page.find_by(:name => params[:id])
-          { response.name =>  response.nested_item }
+          response.nested_item
         end
         
         before do
