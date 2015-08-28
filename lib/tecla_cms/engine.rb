@@ -1,3 +1,4 @@
+require 'workflow'
 require 'grape'
 require 'devise' 
 require 'cancancan'

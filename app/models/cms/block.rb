@@ -4,6 +4,7 @@ class Cms::Block
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
+  include Cms::Publishable  
 
   CATEGORIES = %w(Apparel Media Software Sports Agri Education)
   TAGS = %w(Banner, Football)
@@ -17,8 +18,7 @@ class Cms::Block
   field :summary,     type: String
   field :content,     type: String
   field :description, type: String
-
-
+  
   validates :title, presence: true
   
   has_many :images, class_name: "Cms::Image", as: :imageable

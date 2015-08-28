@@ -6,4 +6,5 @@ module TeclaCms
   require "tecla_cms/token_validator"
   require "tecla_cms/user_authorizer"
   require "tecla_cms/hash"
+  require "tecla_cms/workflow"
 end
