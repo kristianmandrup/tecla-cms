@@ -26,4 +26,8 @@ class Cms::Image
   
   has_and_belongs_to_many :image_lists, class_name: "Cms::ImageList", inverse_of: :images
   belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
+
+  def as_json(options={})
+    super(:only => [:title, :mime_description, :type, :categories, :tags, :description, :content])
+  end
 end

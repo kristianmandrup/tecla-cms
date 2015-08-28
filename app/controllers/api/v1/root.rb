@@ -31,6 +31,8 @@ module Api
       mount Api::V1::Blocks
       mount Api::V1::Lists
       mount Api::V1::Pages
+      mount Api::V1::Images
+
     end
   end
 end
