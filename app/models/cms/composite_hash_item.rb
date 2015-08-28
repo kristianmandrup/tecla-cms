@@ -7,10 +7,14 @@ class Cms::CompositeHashItem
   
   belongs_to :composite_hash, polymorphic: true
   
-  def self.get_all_lists
+  def self.get_all_lists(skip_null)
     list_array = []
     self.all.each do |list|
-      list_array << {list.name => list.set_hash}
+      if skip_null
+        list_array << {list.name => list.set_hash}.compact
+      else
+        list_array << {list.name => list.set_hash}
+      end
     end
     list_array
   end

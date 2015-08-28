@@ -9,13 +9,17 @@ module Api
           return "Cms::List".constantize if (type.blank? || type == "list") 
           return "Cms::#{type.capitalize}List".constantize
         end
+        
+        def skip_null
+          (params[:skipnull] == "true")? true : false
+        end
       end
 
       resource :lists do
         
         desc "Return all lists"
         get do
-          get_class_name(params[:type]).get_all_lists
+          get_class_name(params[:type]).get_all_lists(skip_null)
         end
         
         desc "show a list"
@@ -24,7 +28,11 @@ module Api
         end
         get ':id' do
           list = get_class_name(params[:type]).get_list_by_name(params[:id])
-          {list.name => list.set_hash}
+          if skip_null
+            {list.name => list.set_hash}.compact
+          else
+            {list.name => list.set_hash}
+          end
         end
         
         before do

@@ -5,14 +5,10 @@ class Cms::List < Cms::CompositeItem
   
   def set_hash
     hash = {}
-    hash["list_items"] = []
-    composite_items.each do |item|
-      if item._type == "Cms::List"
+    hash["list_items"] = composite_items.where(_type: "Cms::ListItem").as_json(only: [:name])
+    composite_items.where(_type: "Cms::List").each do |item|
         hash[item.name] = {}
         hash[item.name] = item.set_hash
-      elsif item._type == "Cms::ListItem"
-        hash["list_items"] << item.as_json(only: [:name])
-      end
     end
     hash
   end
