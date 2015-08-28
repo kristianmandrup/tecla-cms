@@ -6,22 +6,20 @@ module Cms::Workflowable
     include Workflow
     include Workflow::MongoidAdapter
     
-    workflow_column :status
+    workflow_column :workflow
     
     workflow do
       state :new do
-        event :submit, :transitions_to => :awaiting_review
+        event :submit, :transitions_to => :dev
       end
-      state :awaiting_review do
-        event :review, :transitions_to => :being_reviewed
+      state :dev do
+        event :review, :transitions_to => :preview
       end
-      state :being_reviewed do
-        event :accept, :transitions_to => :accepted
-        event :reject, :transitions_to => :rejected
+      state :preview do
+        event :accept, :transitions_to => :publish
+        event :reject, :transitions_to => :dev
       end
-      state :accepted
-      state :rejected
+      state :publish
     end
   end
-
 end
