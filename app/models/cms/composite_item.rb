@@ -11,7 +11,7 @@ class Cms::CompositeItem
   field :label,       type: String
   field :tags,        type: Array
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   # Track history
   track_history     :on => [:name, :label]

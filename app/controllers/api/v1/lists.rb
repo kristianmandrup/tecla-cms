@@ -13,6 +13,14 @@ module Api
         def skip_null
           (params[:skipnull] == "true")? true : false
         end
+        
+        def list_params
+          if get_class_name(params[:type]) == "Cms::List"
+            ActionController::Parameters.new(params).permit(:name, :root, :child_type, :label, :tags => [])
+          else
+            ActionController::Parameters.new(params).permit(:name)
+          end
+        end
       end
 
       resource :lists do
@@ -44,13 +52,7 @@ module Api
         end
         post do
           if load_and_authorize(current_api_user, :create, Cms::List)  
-            Cms::List.create!({
-              name: params[:name],
-              root: params[:root],
-              child_type: params[:child_type],
-              tags: params[:tags],
-              label: params[:label]
-            })
+            get_class_name(params[:type]).create!(list_params)
             {:success => true, :message => "list has been created!"}
           else
             {error_message: 'Access denied, you are not authorize to create list'}
@@ -64,13 +66,7 @@ module Api
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::List)
-            Cms::List.find(params[:id]).update({
-              name: params[:name],
-              root: params[:root],
-              child_type: params[:child_type],
-              tags: params[:tags],
-              label: params[:label]
-            })
+            get_class_name(params[:type]).find(params[:id]).update((list_params))
             {:success => true, :message => "list has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to update list'}
