@@ -93,7 +93,7 @@ module Api
             block.save!
             {:success => true, :message => "Block has been submitted for review."}
           else
-            {error_message: 'Access denied, you are not authorize to delete block'}
+            {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
        
@@ -109,7 +109,7 @@ module Api
             block.save!
             {:success => true, :message => "Block has been published."}
           else
-            {error_message: 'Access denied, you are not authorize to delete block'}
+            {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
         
@@ -124,7 +124,7 @@ module Api
             block.save!
             {:success => true, :message => "Block has been rejected."}
           else
-            {error_message: 'Access denied, you are not authorize to delete block'}
+            {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
         

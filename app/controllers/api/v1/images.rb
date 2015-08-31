@@ -29,7 +29,7 @@ module Api
         end
         post  do
           if load_and_authorize(current_api_user, :create, Cms::Image) 
-            Cms::Image.create!({
+            image = Cms::Image.new({
               title: params[:title],
               type: params[:type],
               categories: params[:categories],
@@ -37,6 +37,8 @@ module Api
               description: params[:description],
               content: params[:content]
             })
+            image.submit!
+            image.save!
             {:success => true, :message => "Image has been created!"}
           else
             {error_message: 'Access denied, you are not authorize to create Image'}
@@ -74,6 +76,51 @@ module Api
             {:success => true, :message => "image has been deleted!"}
           else
             {error_message: 'Access denied, you are not authorize to delete image'}
+          end
+        end
+
+        desc "submit for review"
+        params do
+          requires :id, type: String
+        end
+        get ':id/review' do
+          if load_and_authorize(current_api_user, :stage, Cms::Image)
+            image = Cms::Image.find(params[:id])
+            image.review!
+            image.save!
+            {:success => true, :message => "image has been submitted for review."}
+          else
+            {error_message: 'Access denied, you are not authorize to complete this action'}
+          end
+        end
+        
+        desc "publish a image"
+        params do
+          requires :id, type: String
+        end
+        get ':id/accept' do
+          if load_and_authorize(current_api_user, :accept, Cms::Image)
+            block = Cms::Image.find(params[:id])
+            block.accept!
+            block.save!
+            {:success => true, :message => "Image has been published."}
+          else
+            {error_message: 'Access denied, you are not authorize to complete this action'}
+          end
+        end
+        
+        desc "reject a image"
+        params do
+          requires :id, type: String
+        end
+        get ':id/reject' do
+          if load_and_authorize(current_api_user, :reject, Cms::Image)
+            block = Cms::Image.find(params[:id])
+            block.reject!
+            block.save!
+            {:success => true, :message => "Image has been rejected."}
+          else
+            {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
       end
