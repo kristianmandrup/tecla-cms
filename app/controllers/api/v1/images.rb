@@ -4,7 +4,12 @@ module Api
 
       version 'v1'
       format :json
-      
+      helpers do
+        def image_params
+          ActionController::Parameters.new(params).permit(:title, :type, :categories, :content, :categories => [], :tags => [])
+        end
+        
+      end
       resource :images  do
         desc "Return list of all images"
         get do
@@ -29,14 +34,7 @@ module Api
         end
         post  do
           if load_and_authorize(current_api_user, :create, Cms::Image) 
-            image = Cms::Image.new({
-              title: params[:title],
-              type: params[:type],
-              categories: params[:categories],
-              tags: params[:tags],
-              description: params[:description],
-              content: params[:content]
-            })
+            image = Cms::Image.new(image_params)
             image.submit!
             image.save!
             {:success => true, :message => "Image has been created!"}
@@ -52,14 +50,7 @@ module Api
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::Image)
-            Cms::Image.find(params[:id]).update({
-              title: params[:title],
-              type: params[:type],
-              categories: params[:categories],
-              tags: params[:tags],
-              description: params[:description],
-              content: params[:content]
-            })
+            Cms::Image.find(params[:id]).update(image_params)
             {:success => true, :message => "image has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to edit image'}

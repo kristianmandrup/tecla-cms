@@ -4,7 +4,11 @@ module Api
 
       version 'v1'
       format :json
-      
+      helpers do
+        def block_params
+          ActionController::Parameters.new(params).permit(:title, :prototype, :summary, :content, :description, :categories => [], :tags => [], :templete => [])
+        end
+      end
       resource :blocks do
         desc "Return list of all blocks"
         get do
@@ -29,16 +33,7 @@ module Api
         end
         post  do
           if load_and_authorize(current_api_user, :create, Cms::Block) 
-            block = Cms::Block.new({
-              title: params[:title],
-              prototype: params[:prototype],
-              categories: params[:categories],
-              tags: params[:tags],
-              template: params[:template],
-              summary: params[:summary],
-              content: params[:content],
-              description: params[:description]
-            })
+            block = Cms::Block.new(block_params)
             block.submit!
             block.save!
             {:success => true, :message => "Block has been created!"}
@@ -54,16 +49,7 @@ module Api
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::Block)
-            Cms::Block.find(params[:id]).update({
-              title: params[:title],
-              prototype: params[:prototype],
-              categories: params[:categories],
-              tags: params[:tags],
-              template: params[:template],
-              summary: params[:summary],
-              content: params[:content],
-              description: params[:description]
-            })
+            Cms::Block.find(params[:id]).update(block_params)
             {:success => true, :message => "Block has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to edit block'}
