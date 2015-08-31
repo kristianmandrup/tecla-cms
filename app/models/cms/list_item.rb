@@ -4,5 +4,5 @@ class Cms::ListItem < Cms::CompositeItem
   field :icon,        type: String
   field :link,        type: String
 
-
+   validates :label, presence: true
 end

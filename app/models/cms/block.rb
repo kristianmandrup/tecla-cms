@@ -20,6 +20,7 @@ class Cms::Block
   field :description, type: String
   
   validates :title, presence: true
+  validates :content, presence: true
   
   has_many :images, class_name: "Cms::Image", as: :imageable
   
