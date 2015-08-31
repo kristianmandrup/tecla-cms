@@ -16,6 +16,7 @@ PATH
       mongoid_orderable
       rails (~> 4.2.3)
       rolify
+      workflow
 
 GEM
   remote: https://rubygems.org/
@@ -364,7 +365,6 @@ DEPENDENCIES
   spring
   tecla_cms!
   web-console (~> 2.0)
-  workflow
 
 BUNDLED WITH
    1.10.6

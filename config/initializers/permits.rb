@@ -11,7 +11,7 @@ end
 
 Permit.create(:publisher) do
   cannot :manage, User
-  can [:manage, :publish], blocks
+  can [:manage, :accept, :reject], blocks
 end
 
 # stage means stage for review by publisher
