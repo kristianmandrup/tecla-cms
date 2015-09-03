@@ -16,12 +16,14 @@ RSpec.describe Cms::List, type: :model do
 
   it "should have trackable history and counts" do
     user = FactoryGirl.create(:user)
-    list.update(name: "test name", modifier: user)
-    list.update(name: "new test name")
-    expect(list.name).to eq("new test name")
+    list_name1 = Faker::Name.name
+    list_name2 = Faker::Name.name
+    list.update(name: list_name1, modifier: user)
+    list.update(name: list_name2, modifier: user)
+    expect(list.name).to eq(list_name2)
     expect(list.history_tracks.count).to eq(2)
     list.undo! user
-    expect(list.name).to eq("test name")
+    expect(list.name).to eq(list_name1)
   end 
 
   it "should have orderable" do

@@ -32,7 +32,7 @@ RSpec.describe Cms::Image, type: :model do
   end
 
   it "should have upload image" do
-    image.picture = fixture_file_upload(Rails.root.join('spec', 'photos', 'icon.png'), 'image/png')
-    expect(image.picture.url.present?).to eq(true) 
+    image.content = fixture_file_upload(Rails.root.join('spec', 'photos', 'icon.png'), 'image/png')
+    expect(image.content.url.present?).to eq(true) 
   end
 end

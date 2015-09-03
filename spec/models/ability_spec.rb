@@ -133,7 +133,7 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability can edit Block" do
-      expect(ability.can? :edit, Cms::Block).to be true
+      expect(ability.cannot? :update, Cms::Block).to be true
     end
   end
 end

@@ -12,10 +12,11 @@ class Cms::Image
   field :description,        type: String
   field :content,            type: String
 
-  attr_accessor :picture, :image_cache
-  mount_uploader :picture, ImageUploader
+  mount_uploader :content, ImageUploader
 
   validates :title, presence: true
+  validates :content, presence: true
+
   belongs_to :imageable, polymorphic: true
 
   # track history

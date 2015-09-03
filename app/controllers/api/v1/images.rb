@@ -6,7 +6,7 @@ module Api
       format :json
       helpers do
         def image_params
-          ActionController::Parameters.new(params).permit(:title, :type, :categories, :content, :categories => [], :tags => [])
+          ActionController::Parameters.new(params).permit(:title, :type, :content, :categories => [], :tags => [])
         end
         
       end
@@ -31,10 +31,12 @@ module Api
         desc "create a new image"
         params do
           requires :title, type: String
+          #TODO requires :content, type: String
         end
         post  do
-          if load_and_authorize(current_api_user, :create, Cms::Image) 
+          if load_and_authorize(current_api_user, :create, Cms::Image)
             image = Cms::Image.new(image_params)
+            image.content = ActionDispatch::Http::UploadedFile.new(params[:content]) if params[:content]
             image.submit!
             image.save!
             {:success => true, :message => "Image has been created!"}
