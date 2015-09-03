@@ -32,6 +32,7 @@ module Api
       mount Api::V1::Lists
       mount Api::V1::Pages
       mount Api::V1::Images
+      mount Api::V1::Layouts
 
     end
   end
