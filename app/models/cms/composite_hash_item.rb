@@ -22,6 +22,9 @@ class Cms::CompositeHashItem
   def self.get_list_by_name(name)
     find_by(:name => name)
   end
-  
+
+  def type
+    self.class.name.gsub("Cms::", "")
+  end  
   
 end

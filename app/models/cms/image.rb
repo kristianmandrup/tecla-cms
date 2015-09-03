@@ -7,7 +7,6 @@ class Cms::Image
 
   field :mime_description,   type: String
   field :title,              type: String, localize: true
-  field :type,               type: String
   field :categories,         type: Array
   field :tags,               type: Array
   field :description,        type: String
@@ -29,6 +28,10 @@ class Cms::Image
   belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
 
   def as_json(options={})
-    super(:only => [:title, :mime_description, :type, :categories, :tags, :description, :content])
+    super(:only => [:title, :mime_description, :categories, :tags, :description, :content], :methods => :type)
+  end
+
+  def type
+    self.class.name.gsub("Cms::", "")
   end
 end

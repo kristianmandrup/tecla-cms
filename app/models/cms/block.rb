@@ -34,7 +34,10 @@ class Cms::Block
   belongs_to :named_block, class_name: "Cms::NamedBlock", inverse_of: :block
 
   def as_json(options={})
-    super(:only => [:title])
+    super(:only => [:title], :methods => :type)
   end
 
+  def type
+    self.class.name.gsub("Cms::", "")
+  end
 end
