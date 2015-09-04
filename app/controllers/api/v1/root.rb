@@ -3,6 +3,9 @@ module Api
     class Root < Grape::API
 
     helpers do
+      def set_locale
+          I18n.locale = params[:locale]  || I18n.default_locale
+      end
       # Return invalid token json
       def invalid_token
         {json: {:message => "Invalid Tokens"}}
@@ -28,6 +31,11 @@ module Api
         user_ability.can? action, model
       end
     end
+
+    before do
+      set_locale
+    end
+
       mount Api::V1::Blocks
       mount Api::V1::Lists
       mount Api::V1::Pages
