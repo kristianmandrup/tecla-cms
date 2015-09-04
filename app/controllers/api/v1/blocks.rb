@@ -90,9 +90,7 @@ module Api
         end
         get ':id/accept' do
           if load_and_authorize(current_api_user, :accept, Cms::Block)
-            block = Cms::Block.find(params[:id])
-            block.accept!
-            block.save!
+            ::PublishJob.new(params[:id]).enqueue(wait_until: Time.now + 2.minutes) #TODO will pass future date once tested
             {:success => true, :message => "Block has been published."}
           else
             {error_message: 'Access denied, you are not authorize to complete this action'}
