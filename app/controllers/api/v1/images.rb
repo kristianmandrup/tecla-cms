@@ -6,7 +6,7 @@ module Api
       format :json
       helpers do
         def image_params
-          ActionController::Parameters.new(params).permit(:title, :type, :content, :categories => [], :tags => [])
+          ActionController::Parameters.new(params).permit(:title, :type, :content, :categories => [], :tags => [], :title_translations => I18n.available_locales)
         end
         
       end
@@ -30,7 +30,7 @@ module Api
 
         desc "create a new image"
         params do
-          requires :title, type: String
+          #requires :title, type: String
           #TODO requires :content, type: String
         end
         post  do
@@ -48,7 +48,7 @@ module Api
         desc "update a image"
         params do
           requires :id, type: String
-          requires :title, type: String
+          #requires :title, type: String
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::Image)

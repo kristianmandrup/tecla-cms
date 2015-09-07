@@ -16,9 +16,9 @@ module Api
         
         def list_params
           if get_class_name(params[:type]) == "Cms::List"
-            ActionController::Parameters.new(params).permit(:name, :root, :child_type, :label, :tags => [])
+            ActionController::Parameters.new(params).permit(:name, :root, :child_type, :label, :tags => [], :name_translations => I18n.available_locales)
           else
-            ActionController::Parameters.new(params).permit(:name)
+            ActionController::Parameters.new(params).permit(:name, :name_translations => I18n.available_locales)
           end
         end
       end
@@ -48,7 +48,7 @@ module Api
         end
         desc "create a new list"
         params do
-          requires :name, type: String
+          #requires :name, type: String
         end
         post do
           if load_and_authorize(current_api_user, :create, Cms::List)  
@@ -62,7 +62,7 @@ module Api
         desc "update a list"
         params do
           requires :id, type: String
-          requires :name, type: String
+          #requires :name, type: String
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::List)

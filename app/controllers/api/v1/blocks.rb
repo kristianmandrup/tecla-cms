@@ -6,7 +6,7 @@ module Api
       format :json
       helpers do
         def block_params
-          ActionController::Parameters.new(params).permit(:title, :prototype, :summary, :content, :description, :categories => [], :tags => [], :templete => [])
+          ActionController::Parameters.new(params).permit( :title, :prototype, :summary, :content, :description, :categories => [], :tags => [], :templete => [], :title_translations => I18n.available_locales )
         end
       end
       resource :blocks do
@@ -29,7 +29,7 @@ module Api
 
         desc "create a new block"
         params do
-          requires :title, type: String
+          #requires :title, type: String
         end
         post  do
           if load_and_authorize(current_api_user, :create, Cms::Block) 
@@ -45,7 +45,7 @@ module Api
         desc "update a block"
         params do
           requires :id, type: String
-          requires :title, type: String
+          #requires :title, type: String
         end
         put ':id' do
           if load_and_authorize(current_api_user, :update, Cms::Block)
