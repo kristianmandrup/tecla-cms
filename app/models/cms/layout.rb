@@ -1,16 +1,14 @@
 class Cms::Layout
-
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
-  include Cms::Publishable  
+  include Cms::Publishable
 
   CATEGORIES = %w(Apparel Media Software Sports Agri Education)
   TAGS = %w(banner, football)
   TYPE = %w(page, block)
   LANGUAGE = %w(liquid)
-
 
   field :type,        type: String, localize: true, :default => 'block'
   field :language,    type: String, :default => 'liquid'
@@ -19,7 +17,7 @@ class Cms::Layout
   field :presenter,   type: String
   field :categories,  type: Array
   field :description, type: String
-  
+
   validates :type, presence: true
 
 end

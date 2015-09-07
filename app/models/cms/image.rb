@@ -3,7 +3,7 @@ class Cms::Image
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
-  include Cms::Publishable 
+  include Cms::Publishable
 
   field :mime_description,   type: String
   field :title,              type: String, localize: true
@@ -26,12 +26,16 @@ class Cms::Image
 
   # ordered list implementation for your mongoid models
   orderable
-  
+
   has_and_belongs_to_many :image_lists, class_name: "Cms::ImageList", inverse_of: :images
   belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
 
   def as_json(options={})
-    super(:only => [:title, :mime_description, :categories, :tags, :description], :methods => [:type, :url])
+    super(:only => api_attributes, :methods => :type)
+  end
+
+  def api_attributes
+    [:title, :mime_description, :categories, :tags, :description, :content]
   end
 
   def type

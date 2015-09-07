@@ -1,5 +1,4 @@
 class Cms::CompositeItem
-
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
@@ -16,7 +15,6 @@ class Cms::CompositeItem
 
   # Track history
   track_history     :on => [:name, :label]
-
 
   # ordered list implementation for your mongoid models
   orderable
