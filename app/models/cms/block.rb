@@ -23,6 +23,9 @@ class Cms::Block
   validates :content, presence: true
   
   has_many :images, class_name: "Cms::Image", as: :imageable
+  has_many :generic_attributes, class_name: "Cms::GenericAttribute",  as: :generic
+  
+  accepts_nested_attributes_for :generic_attributes , allow_destroy: true
   
   # track history
   track_history     :on => [:title, :description]
