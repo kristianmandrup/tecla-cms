@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.3"
   s.add_dependency 'mongoid', "~> 5.0.0.beta"
+  s.add_dependency 'dotenv-rails'
   s.add_dependency 'devise'
   s.add_dependency 'carrierwave'
   s.add_dependency 'carrierwave-mongoid'

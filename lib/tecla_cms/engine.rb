@@ -1,3 +1,4 @@
+require 'dotenv'
 require 'workflow'
 require 'grape'
 require 'devise' 
@@ -13,6 +14,7 @@ module TeclaCms
     isolate_namespace TeclaCms
     config.i18n.available_locales = [:de, :en]
     config.time_zone = 'IST'
+    Dotenv.load
   end
 end
 
