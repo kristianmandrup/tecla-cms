@@ -11,11 +11,11 @@ class Cms::Page
 
   def nested_item
     collections.inject({}) do |res, name|
-      send(col).each do |model|
-        res[name] ||= []
+      res[name] ||= []
+      send(name).each do |model|
         res[name] << model.as_json(only: [:name])
-        res
       end
+      res
     end
   end
 

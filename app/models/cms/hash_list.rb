@@ -7,12 +7,12 @@ class Cms::HashList < Cms::CompositeHashItem
     hash = {}
     hash['type'] = self.type
     composite_hash_items.each do |item|
-      set_hash_by item
+      set_hash_by item, hash
     end
     hash
   end
 
-  def set_hash_by item
+  def set_hash_by item, hash
     hash[item.name] = {}
     hash[item.name]['type'] = item.type if item.type
 
@@ -32,11 +32,11 @@ class Cms::HashList < Cms::CompositeHashItem
 
   private
 
-  def image_hash
-    item.block.as_json(only: [:title], methods: [:type])
+  def image_hash item
+    item.image.as_json(only: [:title], methods: [:type])
   end
 
-  def block_hash
+  def block_hash item
     item.block.as_json(only: [:title], methods: [:type])
   end
 

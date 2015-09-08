@@ -3,8 +3,8 @@ module Api
     prefix 'api'
     format :json
     
-    rescue_from :all, :backtrace => true
-    error_formatter :json, API::ErrorFormatter
+    #rescue_from :all, :backtrace => true
+    #error_formatter :json, API::ErrorFormatter
     
     mount Api::V1::Auth
     mount Api::V1::Root
