@@ -9,6 +9,7 @@ require 'rolify'
 require 'mongoid-history'
 require 'mongoid_orderable'
 require 'mini_magick'
+require 'carrierwave_backgrounder'
 
 module TeclaCms
   class Engine < ::Rails::Engine

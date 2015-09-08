@@ -14,6 +14,8 @@ class Cms::Image
 
   mount_uploader :content, ImageUploader
 
+  process_in_background :content
+
   validates :title, presence: true
   validates :content, presence: true
 
