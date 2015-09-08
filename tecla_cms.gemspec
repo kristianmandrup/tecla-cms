@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave-mongoid'
   s.add_dependency 'fog'
   s.add_dependency 'fog-aws'
+  s.add_dependency 'mini_magick'
   s.add_dependency 'bson_ext'
   s.add_dependency 'rolify'
   s.add_dependency 'cancancan', '~> 1.12.0'

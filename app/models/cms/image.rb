@@ -29,10 +29,14 @@ class Cms::Image
   belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
 
   def as_json(options={})
-    super(:only => [:title, :mime_description, :categories, :tags, :description, :content], :methods => :type)
+    super(:only => [:title, :mime_description, :categories, :tags, :description], :methods => [:type, :url])
   end
 
   def type
     self.class.name.gsub("Cms::", "")
+  end
+
+  def url
+    self.content_url
   end
 end

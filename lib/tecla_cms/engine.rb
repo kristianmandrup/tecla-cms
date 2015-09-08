@@ -8,6 +8,7 @@ require 'carrierwave/mongoid'
 require 'rolify'
 require 'mongoid-history'
 require 'mongoid_orderable'
+require 'mini_magick'
 
 module TeclaCms
   class Engine < ::Rails::Engine
@@ -17,7 +18,3 @@ module TeclaCms
     Dotenv.load
   end
 end
-
-
-    
-    
