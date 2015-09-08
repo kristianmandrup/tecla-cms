@@ -1,10 +1,10 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
       :provider               => 'aws',
-      :aws_access_key_id      => 'AKIAI32FKR4KSD2NJRUA',
-      :aws_secret_access_key  => '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',
-      :region                 => 'eu-central-1' # Change this for different AWS region. Default is 'us-east-1'
+      :aws_access_key_id      => ENV['AWS_KEY'],
+      :aws_secret_access_key  => ENV['AWS_SECRET'],
+      :region                 => ENV['AWS_REGION'] # Change this for different AWS region. Default is 'us-east-1'
   }
-  config.fog_directory  = 'tecla-cms'
+  config.fog_directory  = ENV['AWS_BUCKET']
 
 end
