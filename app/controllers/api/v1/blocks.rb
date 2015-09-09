@@ -88,7 +88,7 @@ module Api
         params do
           requires :id, type: String
         end
-        get ':id/accept' do
+        get ':id/approve' do
           if load_and_authorize(current_api_user, :accept, Cms::Block)
             ::PublishJob.new(params[:id]).enqueue(wait_until: Time.now + 2.minutes) #TODO will pass future date once tested
             {:success => true, :message => "Block has been published."}

@@ -88,7 +88,7 @@ module Api
         params do
           requires :id, type: String
         end
-        get ':id/accept' do
+        get ':id/approve' do
           if load_and_authorize(current_api_user, :accept, Cms::Layout)
             layout = Cms::Layout.find(params[:id])
             layout.accept!
