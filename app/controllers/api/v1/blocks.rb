@@ -6,11 +6,11 @@ module Api
       format :json
       helpers do
         def block_params
-          ActionController::Parameters.new(params).permit( :title, :prototype, :summary, :content, :description, :auto_translate,  :generic_attributes_attributes => [:name, :caption,:type, :filters, :input, :output,:value], :categories => [], :tags => [], :templete => [], :title_translations => I18n.available_locales )
+          ActionController::Parameters.new(params).permit( :title, :prototype, :summary, :content, :description, :generic_attributes_attributes => [:name, :caption,:type, :filters, :input, :output,:value], :categories => [], :tags => [], :templete => [], :title_translations => I18n.available_locales )
         end
         
         def auto_translate?
-          block_params[:auto_translate] == true
+          params[:auto_translate] == "true"
         end
       end
       resource :blocks do
