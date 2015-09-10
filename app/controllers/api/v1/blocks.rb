@@ -6,7 +6,11 @@ module Api
       format :json
       helpers do
         def block_params
-          ActionController::Parameters.new(params).permit( :title, :prototype, :summary, :content, :description,  :generic_attributes_attributes => [:name, :caption,:type, :filters, :input, :output,:value], :categories => [], :tags => [], :templete => [], :title_translations => I18n.available_locales )
+          ActionController::Parameters.new(params).permit( :title, :prototype, :summary, :content, :description, :auto_translate,  :generic_attributes_attributes => [:name, :caption,:type, :filters, :input, :output,:value], :categories => [], :tags => [], :templete => [], :title_translations => I18n.available_locales )
+        end
+        
+        def auto_translate?
+          block_params[:auto_translate] == true
         end
       end
       resource :blocks do
@@ -36,6 +40,7 @@ module Api
             block = Cms::Block.new(block_params)
             block.submit!
             block.save!
+            ::TranslationJob.new(block.id.to_s, "Cms::Block").enqueue(queue: :traslation) if auto_translate?
             {:success => true, :message => "Block has been created!"}
           else
             {error_message: 'Access denied, you are not authorize to create block'}

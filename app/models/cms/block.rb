@@ -15,8 +15,8 @@ class Cms::Block
   field :categories,  type: Array
   field :tags,        type: Array
   field :template,    type: Array
-  field :summary,     type: String
-  field :content,     type: String
+  field :summary,     type: String, localize: true
+  field :content,     type: String, localize: true
   field :description, type: String
   
   validates :title, presence: true
@@ -37,10 +37,18 @@ class Cms::Block
   belongs_to :named_block, class_name: "Cms::NamedBlock", inverse_of: :block
 
   def as_json(options={})
-    super(:only => [:title], :methods => :type)
+    super(:only => [:title,:summary, :content], :methods => :type)
   end
 
   def type
     self.class.name.gsub("Cms::", "")
+  end
+  
+  def tranlate
+    translator = Cms::Translator.new
+    self.title_translations = translator.translate(self.title)
+    self.summary_translations = translator.translate(self.summary) unless self.summary.blank?
+    self.content_translations = translator.translate(self.content) unless self.content.blank?
+    self.save!
   end
 end
