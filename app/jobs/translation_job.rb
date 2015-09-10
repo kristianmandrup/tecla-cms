@@ -4,6 +4,6 @@ class TranslationJob < ActiveJob::Base
   def perform(object_id, object_type)
     klass = object_type.constantize
     obj = klass.find(object_id)
-    obj.tranlate
+    obj.translate
   end
 end

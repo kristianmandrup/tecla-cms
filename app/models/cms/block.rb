@@ -44,8 +44,8 @@ class Cms::Block
     self.class.name.gsub("Cms::", "")
   end
   
-  def tranlate
-    translator = Cms::Translator.new
+  def translate
+    translator = Cms::Translator.new(Cms::MicrosoftTranslator.new)
     self.title_translations = translator.translate(self.title)
     self.summary_translations = translator.translate(self.summary) unless self.summary.blank?
     self.content_translations = translator.translate(self.content) unless self.content.blank?
