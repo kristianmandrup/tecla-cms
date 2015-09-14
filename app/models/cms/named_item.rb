@@ -1,5 +1,3 @@
-class Cms::NamedItem < Cms::CompositeHashItem
+class Cms::NamedItem < Cms::CompositeComponent
 
-  #belongs_to :composite_hash, polymorphic: true
-  
 end

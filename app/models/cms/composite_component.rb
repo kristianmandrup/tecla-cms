@@ -1,4 +1,4 @@
-class Cms::CompositeHashItem
+class Cms::CompositeComponent
   include Mongoid::Document
   include Cms::Composite
 

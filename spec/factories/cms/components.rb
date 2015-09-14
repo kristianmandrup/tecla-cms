@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :hash_list, class: "Cms::HashList" do
+  factory :component, class: "Cms::Component" do
     name { Faker::Name.name }
   end
 end

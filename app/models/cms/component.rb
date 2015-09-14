@@ -1,12 +1,12 @@
-class Cms::HashList < Cms::CompositeHashItem
+class Cms::Component < Cms::CompositeComponent
 
-  has_many :composite_hash_items , as: :composite_hash
+  has_many :composite_components , as: :composite_hash
   belongs_to :page, class_name: 'Cms::Page'
 
   def set_hash
     hash = {}
     hash['type'] = self.type
-    composite_hash_items.each do |item|
+    composite_components.each do |item|
       set_hash_by item, hash
     end
     hash
@@ -17,7 +17,7 @@ class Cms::HashList < Cms::CompositeHashItem
     hash[item.name]['type'] = item.type if item.type
 
     case item._type
-    when 'Cms::HashList'
+    when 'Cms::Component'
       hash[item.name] = item.set_hash
     when 'Cms::BlockList'
       hash[item.name]['blocks'] = blocks_hash item
