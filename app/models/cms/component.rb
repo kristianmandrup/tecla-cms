@@ -1,7 +1,9 @@
 class Cms::Component < Cms::CompositeComponent
 
   has_many :composite_components , as: :composite_hash
-  belongs_to :page, class_name: 'Cms::Page'
+  has_many :lists,   class_name: 'Cms::List'
+  
+  field :page, type: Boolean
 
   def set_hash
     hash = {}
