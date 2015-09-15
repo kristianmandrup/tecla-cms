@@ -35,8 +35,13 @@ module Api
           block = Cms::Block.find_by(:title => params[:title])
           template = block.get_template(params[:template])
           parse_template = Liquid::Template.parse(template.content)
-          render_content = parse_template.render(block.as_json)
-          {:success => true, :template => render_content}
+          render_template = parse_template.render(block.as_json)
+          
+          layout = Cms::Layout.find_by(:name => params[:name])
+          parse_layout = Liquid::Template.parse(layout.content)
+          render_layout = parse_layout.render("content_for_layout" => render_template)
+          
+          {:status => 200, :template => render_layout}
         end
         
         before do

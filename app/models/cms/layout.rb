@@ -9,7 +9,8 @@ class Cms::Layout
   TAGS = %w(banner, football)
   TYPE = %w(page, block)
   LANGUAGE = %w(liquid)
-
+  
+  field :name,        type: String
   field :type,        type: String, localize: true, :default => 'block'
   field :language,    type: String, :default => 'liquid'
   field :tags,        type: Array
