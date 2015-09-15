@@ -27,6 +27,18 @@ module Api
           Cms::Block.find(params[:id])
         end
         
+        desc "render a block"
+        params do
+          requires :title, type: String
+        end
+        get 'render/:title' do
+          block = Cms::Block.find_by(:title => params[:title])
+          template = block.get_template(params[:template])
+          parse_template = Liquid::Template.parse(template.content)
+          render_content = parse_template.render(block.as_json)
+          {:success => true, :template => render_content}
+        end
+        
         before do
           valid_token?
         end

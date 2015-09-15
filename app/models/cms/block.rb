@@ -19,12 +19,12 @@ class Cms::Block
   field :content,     type: String, localize: true
   field :description, type: String
   
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :content, presence: true
   
   has_many :images, class_name: "Cms::Image", as: :imageable
   has_many :generic_attributes, class_name: "Cms::GenericAttribute",  as: :generic
-  has_many :templates, as: :templatable
+  has_many :templates, class_name: "Cms::Template", as: :templatable
   
   accepts_nested_attributes_for :generic_attributes , allow_destroy: true
   
@@ -43,6 +43,10 @@ class Cms::Block
 
   def type
     self.class.name.gsub("Cms::", "")
+  end
+  
+  def get_template(template_name) 
+    template_name.blank? ? self.templates.first : self.templates.find_by(:name => params[:template])
   end
   
   def translate
