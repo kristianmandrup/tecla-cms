@@ -1,7 +1,8 @@
 class Cms::List < Cms::CompositeItem
   #include Cms::Listable
   has_many :composite_items
-  belongs_to :page, class_name: 'Cms::Page'
+  belongs_to :component, class_name: 'Cms::Component'
+  has_many :templates, as: :templatable
 
   def set_hash
     hash = {}

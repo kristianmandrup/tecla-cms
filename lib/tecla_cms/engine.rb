@@ -1,3 +1,4 @@
+require 'liquid'
 require 'microsoft_translator'
 require 'dotenv'
 require 'workflow'

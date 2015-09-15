@@ -2,6 +2,7 @@ class Cms::Component < Cms::CompositeComponent
 
   has_many :composite_components , as: :composite_hash
   has_many :lists,   class_name: 'Cms::List'
+  has_many :templates, as: :templatable
   
   field :page, type: Boolean
 

@@ -20,6 +20,7 @@ class Cms::Image
   validates :content, presence: true
 
   belongs_to :imageable, polymorphic: true
+  has_many :templates, as: :templatable
 
   # track history
   track_history     :on => [:title, :content]

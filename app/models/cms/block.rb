@@ -14,7 +14,7 @@ class Cms::Block
   field :title,       type: String, localize: true
   field :categories,  type: Array
   field :tags,        type: Array
-  field :template,    type: Array
+  field :templates,    type: Array
   field :summary,     type: String, localize: true
   field :content,     type: String, localize: true
   field :description, type: String
@@ -24,6 +24,7 @@ class Cms::Block
   
   has_many :images, class_name: "Cms::Image", as: :imageable
   has_many :generic_attributes, class_name: "Cms::GenericAttribute",  as: :generic
+  has_many :templates, as: :templatable
   
   accepts_nested_attributes_for :generic_attributes , allow_destroy: true
   
