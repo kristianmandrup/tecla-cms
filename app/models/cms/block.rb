@@ -4,7 +4,8 @@ class Cms::Block
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
-  include Cms::Publishable  
+  include Cms::Publishable
+  include RenderAnywhere
 
   CATEGORIES = %w(Apparel Media Software Sports Agri Education)
   TAGS = %w(Banner, Football)
@@ -45,8 +46,15 @@ class Cms::Block
     self.class.name.gsub("Cms::", "")
   end
   
-  def get_template(template_name) 
-    template_name.blank? ? self.templates.first : self.templates.find_by(:name => params[:template])
+  def get_template(template_name, layout_name) 
+    template = (template_name.blank?) ? self.templates.first : self.templates.find_by(:name => params[:template])
+    
+    parse_template = Liquid::Template.parse(template.content)
+    render_template = parse_template.render(block.as_json)
+    
+    layout = Cms::Layout.get_layout(layout_name)
+    parse_layout = Liquid::Template.parse(layout.content)
+    parse_layout.render("content_for_layout" => render_template)
   end
   
   def translate
@@ -56,4 +64,5 @@ class Cms::Block
     self.content_translations = translator.translate(self.content) unless self.content.blank?
     self.save!
   end
+  
 end

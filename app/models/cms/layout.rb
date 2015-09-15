@@ -20,5 +20,9 @@ class Cms::Layout
   field :description, type: String
 
   validates :type, presence: true
+  
+  def self.get_layout(layout_name)
+    (layout_name.blank?) ? self.first : self.find_by(:name => layout_name)
+  end
 
 end
