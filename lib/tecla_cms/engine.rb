@@ -1,3 +1,4 @@
+require 'render_anywhere'
 require 'liquid'
 require 'microsoft_translator'
 require 'dotenv'

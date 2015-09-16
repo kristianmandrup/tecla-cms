@@ -47,14 +47,17 @@ class Cms::Block
   end
   
   def get_template(template_name, layout_name) 
-    template = (template_name.blank?) ? self.templates.first : self.templates.find_by(:name => params[:template])
-    
+    template = (template_name.blank?) ? self.templates.first : self.templates.find_by(:name => template_name)
     parse_template = Liquid::Template.parse(template.content)
-    render_template = parse_template.render(block.as_json)
     
     layout = Cms::Layout.get_layout(layout_name)
-    parse_layout = Liquid::Template.parse(layout.content)
-    parse_layout.render("content_for_layout" => render_template)
+    parse_layout = Liquid::Template.parse(layout.template)
+    
+    Cms::RenderTemplate.new.render({
+      template: parse_template,
+      layout: parse_layout,  
+      :locals => self.to_json
+    })
   end
   
   def translate
