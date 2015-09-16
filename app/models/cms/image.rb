@@ -4,12 +4,12 @@ class Cms::Image
   include Mongoid::History::Trackable
   include Mongoid::Orderable
   include Cms::Publishable
+  include Cms::Named
 
   field :mime_description,   type: String
   field :title,              type: String, localize: true
   field :categories,         type: Array
   field :tags,               type: Array
-  field :description,        type: String
   field :content,            type: String
 
   mount_uploader :content, ImageUploader
@@ -20,7 +20,7 @@ class Cms::Image
   validates :content, presence: true
 
   belongs_to :imageable, polymorphic: true
-  has_many :templates, class_name: "Cms::Template", as: :templatable
+  has_many :templates, class_name: 'Cms::Template', as: :templatable
 
   # track history
   track_history     :on => [:title, :content]
@@ -28,8 +28,8 @@ class Cms::Image
   # ordered list implementation for your mongoid models
   orderable
 
-  has_and_belongs_to_many :image_lists, class_name: "Cms::ImageList", inverse_of: :images
-  belongs_to :named_image, class_name: "Cms::NamedImage", inverse_of: :image
+  has_and_belongs_to_many :image_lists, class_name: 'Cms::ImageList', inverse_of: :images
+  belongs_to :named_image, class_name: 'Cms::NamedImage', inverse_of: :image
 
   def as_json(options={})
     super(:only => api_attributes, :methods => :type)
@@ -39,11 +39,9 @@ class Cms::Image
     [:title, :mime_description, :categories, :tags, :description, :content]
   end
 
-  def type
-    self.class.name.gsub("Cms::", "")
-  end
+  alias_method :url, :content_url
 
-  def url
-    self.content_url
+  def localized_fields
+    [:title, :description]
   end
 end

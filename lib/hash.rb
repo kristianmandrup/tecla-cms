@@ -1,5 +1,4 @@
 class Hash
-
   def compact(opts={})
     inject({}) do |new_hash, (k,v)|
       if !v.blank?
@@ -8,5 +7,4 @@ class Hash
       new_hash
     end
   end
-
 end

@@ -1,8 +1,8 @@
-class TeclaCms::DocumentController
+class Cms::DocumentController
   prepend_view_path Cms::Template::Resolver.instance
 
   protected
-  
+
   def page
     Cms::Page.find(name: name)
   end
@@ -18,5 +18,5 @@ class TeclaCms::DocumentController
   def layout
     params[:template]
   end
-  
+
 end

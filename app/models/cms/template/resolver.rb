@@ -1,7 +1,8 @@
+# TODO: This is NOT a model. Move it!
 class Cms::Template::Resolver < ActionView::Resolver
   require 'singleton'
   include Singleton
-  
+
   attr_accessor :finder
 
   def initialize

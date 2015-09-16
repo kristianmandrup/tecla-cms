@@ -1,4 +1,6 @@
-class TokenResponder
+require 'jwt'
+
+class Token::Responder
   attr_reader :user
 
   def initialize user

@@ -1,4 +1,4 @@
-class TeclaCms::PagesController < TeclaCms::DocumentController
+class Cms::PagesController < Cms::DocumentController
   def show
     render template: template, layout: layout, locals: page.to_json
   end

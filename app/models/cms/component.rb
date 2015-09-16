@@ -1,12 +1,14 @@
 class Cms::Component < Cms::CompositeComponent
   include Cms::Renderable
-  
+  include Cms::Translatable
+
   has_many :composite_components , as: :composite_hash
   has_many :lists,   class_name: 'Cms::List'
-  has_many :templates, class_name: "Cms::Template", as: :templatable
-  
+  has_many :templates, class_name: 'Cms::Template', as: :templatable
+
   field :page, type: Boolean
 
+  # TODO: All this hash logic should be extracted to a Concern or utility class
   def set_hash
     hash = {}
     hash['type'] = self.type
