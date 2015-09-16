@@ -6,6 +6,7 @@ class Cms::Block
   include Mongoid::Orderable
   include Cms::Publishable
   include RenderAnywhere
+  include Cms::Renderable
 
   CATEGORIES = %w(Apparel Media Software Sports Agri Education)
   TAGS = %w(Banner, Football)
@@ -44,14 +45,6 @@ class Cms::Block
 
   def type
     self.class.name.gsub("Cms::", "")
-  end
-  
-  def render(template, layout) 
-    Cms::RenderTemplate.new.render({
-      template: template,
-      layout: layout,  
-      :locals => self.to_json
-    })
   end
   
   def translate

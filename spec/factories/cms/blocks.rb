@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :block, class: 'Cms::Block' do
     title { Faker::Name.name }
     content { Faker::Lorem.paragraph(10) }
+    summary { Faker::Lorem.paragraph(10) }
   end
 end

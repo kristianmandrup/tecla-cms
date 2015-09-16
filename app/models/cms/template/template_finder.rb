@@ -10,12 +10,11 @@ class Cms::Template::TemplateFinder
     find(name, 'layout')
   end
 
-  # or via type: 'partial'
   def find_partial(name)
-    find_template("_#{name}")
+    find(name, 'partial')
   end
 
   def find(name, type)
-    Template.find(name: name, type: type)
+    Cms::Template.find_by(name: name, type: type)
   end
 end

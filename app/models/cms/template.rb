@@ -4,6 +4,7 @@ class Cms::Template
   field :name, type: String, localize: true
   field :content, type: String, localize: true
   field :format, type: String, default: 'html'
+  field :type, type: String, default: 'template'
   
   belongs_to :templatable, polymorphic: :true
   

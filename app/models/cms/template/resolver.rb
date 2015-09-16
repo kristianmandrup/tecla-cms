@@ -3,7 +3,7 @@ class Cms::Template::Resolver < ActionView::Resolver
   include Singleton
 
   def initialize
-    @finder = TemplateFinder.instance
+    @finder = Cms::Template::TemplateFinder.instance
   end
 
   def type prefix
@@ -15,7 +15,7 @@ class Cms::Template::Resolver < ActionView::Resolver
   end
 
   def record name, type
-    finder.find name, type
+    @finder.find name, type
   end
 
   def create_template record, partial, details

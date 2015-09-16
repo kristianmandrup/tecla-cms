@@ -39,3 +39,4 @@ class Cms::Template::Creator
     path.rindex('/') ? path.insert(index + 1, '_') : "_#{path}"
   end
 end
+

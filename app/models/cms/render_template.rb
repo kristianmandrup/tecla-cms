@@ -5,7 +5,11 @@ class Cms::RenderTemplate
 
   prepend_view_path Cms::Template::Resolver.instance
 
-  attr_reader :template, :layout
+  # IMPORTANT
+  # We need to pass the Conent Record that wants to be rendered, with optional template and layout
+  # if these arguments are provided, they override the default layout and template 
+  # of the Content Record (such as a Block )
+
 
   # Include an additional helper
   # If being used in a rake task, you may need to require the file(s)
@@ -19,6 +23,8 @@ class Cms::RenderTemplate
   def set_instance_variable(var, value)
     set_instance_variable(var, value)
   end
+  
+  
 
  class RenderingController < RenderAnywhere::RenderingController
     # include custom modules here, define accessors, etc. For example:
@@ -31,4 +37,3 @@ class Cms::RenderTemplate
     @rendering_controller ||= self.class.const_get("RenderingController").new
   end
 end
-
