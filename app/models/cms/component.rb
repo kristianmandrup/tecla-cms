@@ -1,5 +1,6 @@
 class Cms::Component < Cms::CompositeComponent
-
+  include Cms::Renderable
+  
   has_many :composite_components , as: :composite_hash
   has_many :lists,   class_name: 'Cms::List'
   has_many :templates, class_name: "Cms::Template", as: :templatable

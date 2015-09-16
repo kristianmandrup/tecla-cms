@@ -1,6 +1,8 @@
 class Cms::Template::Resolver < ActionView::Resolver
   require 'singleton'
   include Singleton
+  
+  attr_accessor :finder
 
   def initialize
     @finder = Cms::Template::TemplateFinder.instance
@@ -15,7 +17,7 @@ class Cms::Template::Resolver < ActionView::Resolver
   end
 
   def record name, type
-    @finder.find name, type
+    finder.find name, type
   end
 
   def create_template record, partial, details
