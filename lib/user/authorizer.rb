@@ -1,5 +1,4 @@
-class UserAuthorizer
-
+class User::Authorizer
   attr_reader :email, :password
 
   def initialize email, password
@@ -7,7 +6,7 @@ class UserAuthorizer
   end
 
   def authorize
-    valid_auth? ? TokenResponder.new(user).valid_token : TokenResponder.new(user).invalid_token
+    valid_auth? ? Token::Responder.new(user).valid_token : Token::Responder.new(user).invalid_token
   end
 
   def user

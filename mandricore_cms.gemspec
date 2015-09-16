@@ -1,23 +1,28 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
-require "tecla_cms/version"
+require 'cms/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "tecla_cms"
-  s.version     = TeclaCms::VERSION
-  s.authors     = ["Ankush Kataria"]
-  s.email       = ["katariyaankush574@gmail.com"]
-  s.homepage    = "http://www.example.com"
-  s.summary     = "TeclaCms Engine."
-  s.description = "Description of TeclaCms."
-  s.license     = "MIT"
+  s.name        = 'mandricore_cms'
+  s.version     = Cms::VERSION
+  s.authors     = [
+    'Ankush Kataria',
+    'Kristian Mandrup'
+  ]
+  s.email       = [
+    'kmandrup@gmail.com',
+    'katariyaankush574@gmail.com'
+  ]
+  s.homepage    = 'http://www.mandricore.com'
+  s.summary     = 'Mandricore Cms Engine.'
+  s.description = 'Engine for Mandricore Cms'
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency "rails", "~> 4.2.3"
-  s.add_dependency 'mongoid', "~> 5.0.0.beta"
+  s.add_dependency 'rails', '~> 4.2.3'
+  s.add_dependency 'mongoid', '~> 5.0.0.beta'
   s.add_dependency 'dotenv-rails'
   s.add_dependency 'devise'
   s.add_dependency 'carrierwave'
@@ -44,5 +49,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'faker'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'database_cleaner'
-  s.test_files = Dir["spec/**/*"]
+  s.test_files = Dir['spec/**/*']
 end

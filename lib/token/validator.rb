@@ -1,4 +1,5 @@
-class TokenValidator
+require 'jwt'
+class Token::Validator
   def initialize(token)
     @token = token
     unless decoded_data

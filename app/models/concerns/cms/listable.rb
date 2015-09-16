@@ -3,9 +3,12 @@ module Cms::Listable
   #include Cms::Publishable
 
   included do
-    field :name, type: String
+    include Mongoid::Orderable
+
     field :order, type: Integer
-    field :description, type: Array
+
+    # ordered list implementation for your mongoid models
+    orderable
   end
 
 end

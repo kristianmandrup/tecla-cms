@@ -1,3 +1,4 @@
+# TODO: This is NOT a model. Move it!
 class Cms::Template::TemplateFinder
   require 'singleton'
   include Singleton

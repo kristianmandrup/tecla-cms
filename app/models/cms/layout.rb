@@ -4,25 +4,23 @@ class Cms::Layout
   include Mongoid::History::Trackable
   include Mongoid::Orderable
   include Cms::Publishable
+  include Cms::Translatable
+  include Cms::Named
 
-  CATEGORIES = %w(Apparel Media Software Sports Agri Education)
-  TAGS = %w(banner, football)
-  TYPE = %w(page, block)
-  LANGUAGE = %w(liquid)
-  
-  field :name,        type: String
-  field :type,        type: String, localize: true, :default => 'block'
+  field :type,        type: String, :default => 'block'
   field :language,    type: String, :default => 'liquid'
   field :tags,        type: Array
   field :template,    type: String
-  field :presenter,   type: String
   field :categories,  type: Array
   field :description, type: String
 
   validates :type, presence: true
-  
-  def self.get_layout(layout_name)
+
+  def self.layout(layout_name)
     (layout_name.blank?) ? self.first : self.find_by(:name => layout_name)
   end
 
+  def localized_fields
+    [:description]
+  end
 end
