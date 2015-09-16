@@ -46,16 +46,10 @@ class Cms::Block
     self.class.name.gsub("Cms::", "")
   end
   
-  def get_template(template_name, layout_name) 
-    template = (template_name.blank?) ? self.templates.first : self.templates.find_by(:name => template_name)
-    parse_template = Liquid::Template.parse(template.content)
-    
-    layout = Cms::Layout.get_layout(layout_name)
-    parse_layout = Liquid::Template.parse(layout.template)
-    
+  def render(template, layout) 
     Cms::RenderTemplate.new.render({
-      template: parse_template,
-      layout: parse_layout,  
+      template: template,
+      layout: layout,  
       :locals => self.to_json
     })
   end
