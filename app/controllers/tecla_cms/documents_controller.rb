@@ -1,4 +1,4 @@
-class TeclaCms::DocumentController
+class TeclaCms::DocumentsController < ActionController::Base
   prepend_view_path Cms::Template::Resolver.instance
 
   protected
