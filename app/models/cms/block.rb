@@ -2,27 +2,23 @@ class Cms::Block
   include Concerned
   include_concerns :document, :named, :publishable,
                    :listable, :renderable, :translatable,
-                   :describable, :taggable
-
-  # TODO: Prototype pattern should be generalized via concern or class method
-  # http://stackoverflow.com/questions/6535898/mongodb-mongoid-self-reference-relationship
-  belongs_to :prototype, class_name: 'Cms::Block', :inverse_of => :blueprints
-  has_many :blueprints, class_name: 'Cms::Block', :inverse_of => :prototype
+                   :describable, :taggable, :extendable, :blueprintable
 
   localized_fields :title, :summary, :content
+
+  blueprint 'Cms::Block'
 
   # TODO: optimize via DSL!
   validates :title, presence: true
   validates :content, presence: true
 
+  # TODO: concern
   has_many :images, class_name: 'Cms::Image', as: :imageable
 
+  # TODO: concern
   has_many :templates, class_name: 'Cms::Template', as: :templatable
 
-  # TODO: concern
-  has_many :generic_attributes, class_name: 'Cms::GenericAttribute',  as: :generic
-  accepts_nested_attributes_for :generic_attributes , allow_destroy: true
-
+  # TODO: encapsulate via concern somehow!
   # track history
   track_history     :on => [:title, :description]
 

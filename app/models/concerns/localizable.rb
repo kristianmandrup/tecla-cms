@@ -2,7 +2,9 @@ module Localizable
   extend ActiveSupport::Concern
 
   included do
-    # used for authors to descibe what is being edited, not for display
+    def fields_localized
+      self.class.fields_localized
+    end
   end
 
   class_methods do
