@@ -1,7 +1,7 @@
 # TODO: merge with Layout model
 class Cms::Template
   include Mongoid::Document
-  include Cms::Named
+  include Named
 
   field :content, type: String, localize: true
   field :format, type: String, default: 'html'

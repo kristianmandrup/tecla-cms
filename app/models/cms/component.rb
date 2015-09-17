@@ -1,6 +1,6 @@
 class Cms::Component < Cms::CompositeComponent
-  include Cms::Renderable
-  include Cms::Translatable
+  include Renderable
+  include Translatable
 
   has_many :composite_components , as: :composite_hash
   has_many :lists,   class_name: 'Cms::List'
