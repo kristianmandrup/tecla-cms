@@ -4,26 +4,23 @@ class Cms::Block
                    :listable, :renderable, :translatable,
                    :describable, :taggable
 
-  # Should reference another Block which is the prototype (blueprint)
-  # used to construct this Block from.
-  # The prototype can also be used for default template and layout etc.
-  # TODO: FIX THIS!!! Write spec
-  field :prototype,   type: String
+  # TODO: Prototype pattern should be generalized via concern or class method
+  # http://stackoverflow.com/questions/6535898/mongodb-mongoid-self-reference-relationship
+  belongs_to :prototype, class_name: 'Cms::Block', :inverse_of => :blueprints
+  has_many :blueprints, class_name: 'Cms::Block', :inverse_of => :prototype
 
-  field :templates,   type: Array
+  localized_fields :title, :summary, :content
 
-  # TODO: should use form: localized_field :title
-  field :title,       type: String, localize: true
-  field :summary,     type: String, localize: true
-  field :content,     type: String, localize: true
-
+  # TODO: optimize via DSL!
   validates :title, presence: true
   validates :content, presence: true
 
   has_many :images, class_name: 'Cms::Image', as: :imageable
-  has_many :generic_attributes, class_name: 'Cms::GenericAttribute',  as: :generic
+
   has_many :templates, class_name: 'Cms::Template', as: :templatable
 
+  # TODO: concern
+  has_many :generic_attributes, class_name: 'Cms::GenericAttribute',  as: :generic
   accepts_nested_attributes_for :generic_attributes , allow_destroy: true
 
   # track history
@@ -34,9 +31,5 @@ class Cms::Block
 
   def as_json(options={})
     super(:only => [:title,:summary, :content], :methods => :type)
-  end
-
-  def localized_fields
-    [:title, :summary, :content, :description]
   end
 end
