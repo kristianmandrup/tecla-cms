@@ -11,7 +11,7 @@ RSpec.describe Cms::Document, type: :model do
     expect(document).to be_valid
   end
 
-  it "should require a title" do
+  it "should require a name" do
     document.name = nil
     expect(document).to be_invalid
   end
