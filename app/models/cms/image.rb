@@ -3,8 +3,8 @@ class Cms::Image
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
-  include Cms::Publishable
-  include Cms::Named
+  include Publishable
+  include Named
 
   field :mime_description,   type: String
   field :title,              type: String, localize: true
