@@ -18,7 +18,7 @@ module Localizable
     end
 
     def fields_localized
-      @fields_localized ||= {}
+      @fields_localized ||= []
     end
   end
 end
