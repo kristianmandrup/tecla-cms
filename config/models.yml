@@ -1,0 +1,14 @@
+content_item:
+  - uniquely_named
+  - listable
+  - publishable
+  - translatable
+  - blueprintable
+
+block: &content_item
+component: &content_item
+
+image:
+  - uniquely_named
+  - uploadable
+
