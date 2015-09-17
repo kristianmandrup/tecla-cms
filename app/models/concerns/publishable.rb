@@ -2,7 +2,7 @@ module Publishable
   extend ActiveSupport::Concern
 
   included do
-    include Cms::Workflowable
+    include Workflowable
 
     field :workflow, type: String
     field :status, type: String

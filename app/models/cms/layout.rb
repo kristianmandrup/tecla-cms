@@ -3,9 +3,9 @@ class Cms::Layout
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Mongoid::Orderable
-  include Cms::Publishable
-  include Cms::Translatable
-  include Cms::Named
+  include Publishable
+  include Translatable
+  include Named
 
   field :type,        type: String, :default => 'block'
   field :language,    type: String, :default => 'liquid'
