@@ -1,12 +1,8 @@
 class Cms::Block
-  include Cms::Document
-  include Cms::Named
-  include Cms::Publishable
-  include Cms::Listable
-  include Cms::Renderable
-  include Cms::Translatable
-  include Cms::Describable
-  include Cms::Taggable
+  include Concerned
+  include_concerns :document, :named, :publishable,
+                   :listable, :renderable, :translatable,
+                   :describable, :taggable
 
   # Should reference another Block which is the prototype (blueprint)
   # used to construct this Block from.
@@ -16,6 +12,7 @@ class Cms::Block
 
   field :templates,   type: Array
 
+  # TODO: should use form: localized_field :title
   field :title,       type: String, localize: true
   field :summary,     type: String, localize: true
   field :content,     type: String, localize: true

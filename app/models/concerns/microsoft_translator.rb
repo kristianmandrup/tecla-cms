@@ -1,8 +1,9 @@
-class Cms::MicrosoftTranslator < Cms::GenericTranslator
+# TODO: This is NOT a concern. Move it out where it belongs!
+class MicrosoftTranslator < GenericTranslator
   attr_reader :client
 
   def initialize
-    @client = MicrosoftTranslator::Client.new(ENV['TRANSLATOR_CLIENT_ID'], ENV['TRANSLATOR_CLIENT_SECRET']) 
+    @client = MicrosoftTranslator::Client.new(ENV['TRANSLATOR_CLIENT_ID'], ENV['TRANSLATOR_CLIENT_SECRET'])
   end
 
   def detect_language text
@@ -13,5 +14,5 @@ class Cms::MicrosoftTranslator < Cms::GenericTranslator
     throw 'Text translation missing language to translate to' unless lang
     client.translate(text, base_lang, lang, mime)
   end
-  
+
 end

@@ -1,4 +1,4 @@
-module Cms::Publishable
+module Publishable
   extend ActiveSupport::Concern
 
   included do

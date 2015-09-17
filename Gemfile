@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog'
 gem 'fog-aws'
+gem 'concerned'
 
 #devise
 gem 'bson_ext'

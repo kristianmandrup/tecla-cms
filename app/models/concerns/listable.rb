@@ -1,4 +1,4 @@
-module Cms::Listable
+module Listable
   extend ActiveSupport::Concern
   #include Cms::Publishable
 

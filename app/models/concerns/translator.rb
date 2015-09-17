@@ -1,4 +1,5 @@
-class Cms::Translator
+# TODO: This is NOT a concern. Move it out where it belongs!
+class Translator
   extend ActiveSupport::Concern
 
   attr_accessor :base_lang, :translator_client
