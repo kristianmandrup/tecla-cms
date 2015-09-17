@@ -4,7 +4,7 @@ class Cms::Block
                    :listable, :renderable, :translatable,
                    :describable, :taggable, :extendable, :blueprintable
 
-  localized_fields :title, :summary, :content
+  localize_fields :title, :summary, :content
 
   blueprint 'Cms::Block'
 
