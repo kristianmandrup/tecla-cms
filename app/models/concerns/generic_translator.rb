@@ -1,4 +1,5 @@
-class Cms::GenericTranslator
+# TODO: This is NOT a concern. Move it out where it belongs!
+class GenericTranslator
   def detect_language text
     raise NotImplementedError.new("GenericTranslator subclass must implement: detect_language")
   end

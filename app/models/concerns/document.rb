@@ -1,4 +1,4 @@
-module Cms::Document
+module Document
   extend ActiveSupport::Concern
 
   included do
@@ -8,6 +8,6 @@ module Cms::Document
 
     def type
       self.class.name.gsub('Cms::', '')
-    end    
+    end
   end
 end

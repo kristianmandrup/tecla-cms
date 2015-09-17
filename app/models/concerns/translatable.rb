@@ -1,5 +1,9 @@
-module Cms::Translatable
+module Translatable
   extend ActiveSupport::Concern
+
+  included do
+    # include Localizable
+  end
 
   def localized_fields
     [:title, :description]

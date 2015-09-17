@@ -1,4 +1,4 @@
-module Cms::Renderable
+module Renderable
   # Usage block.render template: template, layout: layout
   def render opts = {}
     renderer.render opts

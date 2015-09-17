@@ -1,4 +1,4 @@
-module Cms::Named
+module Named
   extend ActiveSupport::Concern
 
   included do
