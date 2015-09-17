@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/kristianmandrup/concerned.git
+  revision: 5bce115935dc5bf22c1c09e17318e6132ed8a1f2
+  specs:
+    concerned (0.1.6)
+
 PATH
   remote: .
   specs:
@@ -7,6 +13,7 @@ PATH
       carrierwave
       carrierwave-mongoid
       carrierwave_backgrounder
+      concerned
       devise
       dotenv-rails
       fog
@@ -412,6 +419,7 @@ DEPENDENCIES
   cancancan (~> 1.12.0)
   carrierwave
   carrierwave-mongoid
+  concerned!
   database_cleaner
   devise
   factory_girl_rails
@@ -427,3 +435,6 @@ DEPENDENCIES
   rspec-rails
   spring
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
