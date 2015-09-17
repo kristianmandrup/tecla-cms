@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cms::ComponentController do
+describe Cms::ComponentsController do
   describe "GET #index" do
     it "renders the :index template"
   end
