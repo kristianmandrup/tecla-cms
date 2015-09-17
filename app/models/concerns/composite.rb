@@ -1,4 +1,4 @@
-module Cms::Composite
+module Composite
   extend ActiveSupport::Concern
 
   included do
