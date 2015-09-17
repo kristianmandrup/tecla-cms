@@ -2,17 +2,12 @@ class Cms::Image
   include Concerned
   include_concerns :document, :translatable, :validatable,
                    :blueprintable, :publishable,
-                   :taggable, :listable
+                   :taggable, :listable, :uploadable
 
 
   field :mime_description,   type: String
-  field :content,            type: String
 
   localize_fields :title, :description
-
-  mount_uploader :content, ImageUploader
-  process_in_background :content
-  validates :content, presence: true
 
   belongs_to :imageable, polymorphic: true
   # has_many :templates, class_name: 'Cms::Template', as: :templatable
