@@ -2,15 +2,11 @@ module Translatable
   extend ActiveSupport::Concern
 
   included do
-    # include Localizable
-  end
-
-  def localized_fields
-    [:title, :description]
+    include_concerns :localizable
   end
 
   def translate_all
-    localized_fields.each {|name| translate_field name }
+    fields_localized.each {|name| translate_field name }
     save!
   end
 
