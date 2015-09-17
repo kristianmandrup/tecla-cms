@@ -11,7 +11,7 @@ module Translatable
   end
 
   def translate_field name
-    send("#{name}_translations=", translate(name)
+    send("#{name}_translations=", translate(name))
   end
 
   def translate field_name
