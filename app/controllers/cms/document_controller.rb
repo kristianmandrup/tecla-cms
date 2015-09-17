@@ -1,4 +1,4 @@
-class Cms::DocumentController
+class Cms::DocumentController < Cms::ApplicationController
   prepend_view_path Cms::Template::Resolver.instance
 
   protected
