@@ -8,9 +8,6 @@ class Cms::Block
 
   blueprint 'Cms::Block'
 
-  # TODO: optimize via DSL!
-  validates :title, presence: true
-  validates :content, presence: true
 
   # TODO: concern
   has_many :images, class_name: 'Cms::Image', as: :imageable
