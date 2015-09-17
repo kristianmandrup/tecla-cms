@@ -1,5 +1,4 @@
 module Workflow
-  puts "Workflow"
   module MongoidAdapter
     extend ActiveSupport::Concern
 

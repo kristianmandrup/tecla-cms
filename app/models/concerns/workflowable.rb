@@ -1,3 +1,5 @@
+require 'workflow/mongoid_adapter'
+
 module Workflowable
   extend ActiveSupport::Concern
 
