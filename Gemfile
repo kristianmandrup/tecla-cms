@@ -33,7 +33,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog'
 gem 'fog-aws'
 gem 'concerned', github: 'kristianmandrup/concerned'
-gem 'workflow'
+# gem 'workflow', path: '/Users/kristianmandrup/repos/test123/workflow'
 
 #devise
 gem 'bson_ext'
