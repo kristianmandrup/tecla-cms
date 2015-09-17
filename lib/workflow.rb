@@ -1,6 +1,9 @@
 module Workflow
+  puts "Workflow"
   module MongoidAdapter
-    module InstanceMethods
+    extend ActiveSupport::Concern
+
+    included do
       def load_workflow_state
         # Load and return the workflow_state from some storage.
         # You can use self.class.workflow_column configuration.
@@ -13,13 +16,8 @@ module Workflow
       end
     end
 
-    module ClassMethods
-      # class methods of your adapter go here
-    end
-
-    def self.included(klass)
-      klass.send :include, InstanceMethods
-      klass.extend ClassMethods
+    class_methods do
+      #  of your adapter go here
     end
   end
 end

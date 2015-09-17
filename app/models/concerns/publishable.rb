@@ -4,7 +4,7 @@ module Publishable
   included do
     include Workflowable
 
-    field :workflow, type: String
+    field :state, type: String
     field :status, type: String
     field :comments, type: Array
   end
