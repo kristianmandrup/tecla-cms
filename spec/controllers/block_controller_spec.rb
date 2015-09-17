@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cms::BlockController do
+describe Cms::BlocksController do
   describe "GET #index" do
     it "renders the :index template"
   end
