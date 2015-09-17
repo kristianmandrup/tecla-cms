@@ -1,13 +1,14 @@
 class Cms::Block
   include Concerned
   include_concerns :document, :translatable, :validatable,
-                   :blueprintable, :publishable #,
-                   # :listable
-                    #, :taggable, :extendable
+                   :blueprintable, :publishable,
+                   :taggable, :renderable,
+                   :listable #, :extendable
+                    #, ,
                   #  , :images, :templates
-                  # FIX!!! , :renderable
+                  # FIX!!! ,
 
-  localize_fields :title, :summary, :content #, :description
+  localize_fields :title, :summary, :content, :description
   validate_fields!
   # tracks :title, :description
   # blueprint 'Cms::Block'
