@@ -13,7 +13,7 @@ module Localizable
       fields_localized << name
     end
 
-    def localized_fields *names
+    def localize_fields *names
       names.each {|name| localized_field name }
     end
 
