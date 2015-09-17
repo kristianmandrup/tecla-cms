@@ -1,4 +1,4 @@
-module Extensible
+module Blueprintable
   extend ActiveSupport::Concern
 
   class_methods do

@@ -13,6 +13,7 @@ require 'mongoid-history'
 require 'mongoid_orderable'
 require 'mini_magick'
 require 'carrierwave_backgrounder'
+require 'concerned'
 
 module Cms
 
