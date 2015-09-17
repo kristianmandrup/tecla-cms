@@ -1,5 +1,5 @@
 class Cms::GenericAttribute
-  include Mongoid::Document
+  include Cms::Document
   include Named
 
   field :caption, type: String

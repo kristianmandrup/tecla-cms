@@ -4,6 +4,7 @@ class Cms::Block
                    :blueprintable, :publishable,
                    :taggable, :renderable,
                    :listable #, :extendable
+                   # :images
                     #, ,
                   #  , :images, :templates
                   # FIX!!! ,

@@ -1,32 +1,24 @@
 class Cms::Image
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::History::Trackable
-  include Mongoid::Orderable
-  include Publishable
-  include Named
+  include Concerned
+  include_concerns :document, :translatable, :validatable,
+                   :blueprintable, :publishable,
+                   :taggable, :listable
+
 
   field :mime_description,   type: String
-  field :title,              type: String, localize: true
-  field :categories,         type: Array
-  field :tags,               type: Array
   field :content,            type: String
 
+  localize_fields :title, :description
+
   mount_uploader :content, ImageUploader
-
   process_in_background :content
-
-  validates :title, presence: true
   validates :content, presence: true
 
   belongs_to :imageable, polymorphic: true
-  has_many :templates, class_name: 'Cms::Template', as: :templatable
+  # has_many :templates, class_name: 'Cms::Template', as: :templatable
 
   # track history
-  track_history     :on => [:title, :content]
-
-  # ordered list implementation for your mongoid models
-  orderable
+  tracks :title, :content
 
   has_and_belongs_to_many :image_lists, class_name: 'Cms::ImageList', inverse_of: :images
   belongs_to :named_image, class_name: 'Cms::NamedImage', inverse_of: :image
@@ -40,8 +32,4 @@ class Cms::Image
   end
 
   alias_method :url, :content_url
-
-  def localized_fields
-    [:title, :description]
-  end
 end

@@ -6,5 +6,6 @@ FactoryGirl.define do
     title { Faker::Name.name }
     content { Faker::Lorem.paragraph(10) }
     summary { Faker::Lorem.paragraph(10) }
+    position { 0 }
   end
 end
