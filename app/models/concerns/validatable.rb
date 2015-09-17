@@ -2,12 +2,16 @@ module Validatable
   extend ActiveSupport::Concern
 
   included do
-    self.fields.keys.each do |name|
-      validate_field name
-    end
+    # validate_fields!
   end
 
   class_methods do
+    def validate_fields!
+      self.fields.keys.each do |name|
+        validate_field name.to_sym
+      end
+    end
+
     def validate_field name
       required_field(name) # || ...
     end

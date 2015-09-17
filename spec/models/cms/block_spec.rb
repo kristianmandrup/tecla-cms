@@ -3,16 +3,27 @@ require 'rails_helper'
 RSpec.describe Cms::Block, type: :model do
 
   let(:block) {FactoryGirl.create(:block)}
+
   after(:all) do
-    Cms::Block.destroy_all
+    # Cms::Block.destroy_all
   end
 
   it "should have valid block factory" do
     expect(block).to be_valid
   end
 
+  it "should require a name" do
+    block.name = nil
+    expect(block).to be_invalid
+  end
+
   it "should require a title" do
     block.title = nil
+    expect(block).to be_invalid
+  end
+
+  it "should require content" do
+    block.content = nil
     expect(block).to be_invalid
   end
 
