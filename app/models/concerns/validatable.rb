@@ -7,6 +7,8 @@ module Validatable
 
     # advanced runtime record validation goes here!!
     validates_with Cms::Model::Validator
+
+    fields_validation
   end
 
   class_methods do

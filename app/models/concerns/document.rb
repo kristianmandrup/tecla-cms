@@ -11,12 +11,20 @@ module Document
       self.class.name.gsub('Cms::', '')
     end
 
-    def as_json(options={})
-      super(:only => json_fields, :methods => :type)
+    def has_field? name
+      self.class.has_field? name
     end
   end
 
   class_methods do
+    def text_field name, opts = {}
+      field name, {type: String}.merge opts
+    end
+
+    def has_field? name
+      self.fields.keys.include? name.to_s
+    end
+
     def tracks *fields
       track_history :on => fields
     end

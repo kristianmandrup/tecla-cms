@@ -2,7 +2,6 @@ module Metadata
   extend ActiveSupport::Concern
 
   included do
-    field :categories,  type: Array
-    field :tags,        type: Array
+    include_concerns :describable, :categorizable, :taggable
   end
 end

@@ -2,6 +2,8 @@ module Composite
   extend ActiveSupport::Concern
 
   included do
+    include_concerns :listable
+
     def type
       self.class.name.gsub("Cms::", "")
     end

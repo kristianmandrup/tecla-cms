@@ -28,6 +28,6 @@ class Cms::Model::FieldValidator
   end
 
   def required_fields
-    [:name, :title, :content]
+    [:name, :label, :title, :content]
   end
 end
