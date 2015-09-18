@@ -26,5 +26,5 @@ class Cms::Image
     [:title, :mime_description, :categories, :tags, :description, :content]
   end
 
-  alias_method :url, :content_url
+  alias_method :url, :img_content_url
 end
