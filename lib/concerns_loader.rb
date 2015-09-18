@@ -10,20 +10,22 @@ class ConcernsLoader
     @model = model
   end
 
-  def config
-    @folder ||= File.join(Rails.root, 'config')
+  def model_name
+    model.to_s.demodulize.downcase
   end
 
-  def yaml_file
-    File.join config, 'models.yml'
+  def load concern
+    loader.load![concern || model_name]
   end
 
-  def load name
-    parsed = begin
-      YAML.load(File.open(yaml_file))[name || model]
-    rescue ArgumentError => e
-      puts "Could not parse YAML: #{e.message}"
-    end
+  protected
+
+  def loader
+    @loader ||= Config::Loader.new file
+  end
+
+  def file
+    'models.yml'
   end
 end
 
