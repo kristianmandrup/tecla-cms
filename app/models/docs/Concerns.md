@@ -45,6 +45,18 @@ See: [Composite_pattern](https://en.wikipedia.org/wiki/Composite_pattern)
 
 Makes the model into a Composite model. A Composite is a model which can be a child of another model. A composite that is part of a list should be `listable` (see Listable). Currently we assume that any Composite is part of a container which is a list.
 
+### ContentItem
+
+Makes the model into a Content item, which is shorthand for adding the following concerns:
+
+-	uniquely_named,
+-	translatable
+-	validatable,
+-	renderable
+-	publishable,
+-	blueprintable
+-	serializable
+
 ### Document
 
 Any Document will get these methods:

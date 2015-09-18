@@ -5,7 +5,11 @@ A *Block* is the main atomic content building block.
 
 ### Concerns
 
--	content_item -
+-	content_item
+-	listable
+-	extendable
+-	images
+-	templates
 
 ### Prototype
 
@@ -27,9 +31,9 @@ A block can have references to one or more images via the `images` relationship.
 
 A Block can reference one or more Generic attributes via `generic_attributes`. Each such attribute contains information on how to handle that field, such as display rules, validation etc. Generic attributes allow the client to add whichever extra data or metadata they need to a Model. This is often used to enter metadata, such as SEO or tracking data etc. Generic attributes are designed to play nicely with UIs and form builders.
 
-### Lists
+### Composite
 
-A Block can be part of one or more Block lists via the `block_lists` relationship.
+A Block is a *Composite* and can be part of lists or components. A Block can be part of one or more Block lists via the `block_lists` relationship.
 
 ### Templates
 
