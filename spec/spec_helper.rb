@@ -19,6 +19,7 @@
 
 require 'factory_girl_rails'
 require 'faker'
+require 'vcr/config'
 
 RSpec.configure do |config|
 
