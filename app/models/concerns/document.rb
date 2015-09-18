@@ -5,6 +5,7 @@ module Document
     include Mongoid::Document
     include Mongoid::Timestamps
     include Mongoid::History::Trackable
+    include Concerned
     include Named
 
     def type
@@ -17,6 +18,18 @@ module Document
   end
 
   class_methods do
+
+    # ============
+    # IMPORTANT
+    # ============
+    # This should be used to apply concerns for each Model
+    # This way, models can be configured in large part directly via models.yml file,
+    # Totally declaratively... and concerns list can be reused in various contexts and provide
+    # much better overview and understanding of what each model can do and provides
+    def apply_concerns model
+      include_concerns ConcernsLoader.instance.load(model || name)
+    end
+
     def text_field name, opts = {}
       field name, {type: String}.merge opts
     end
