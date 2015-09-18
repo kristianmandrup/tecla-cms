@@ -3,6 +3,10 @@ Block
 
 A *Block* is the main atomic content building block.
 
+### Concerns
+
+-	content_item -
+
 ### Prototype
 
 The block can act as a prototype and define the blueprint for other blocks to be built from. A block built from a prototype links to the prototype via the special `prototype` relation. A prototype block can have one or more blueprints, each accessed via the `blueprints` relation.

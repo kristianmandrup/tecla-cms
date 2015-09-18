@@ -1,6 +1,12 @@
 class Config::Loader
+  attr_reader :store
+
   def initialize file
     @file = file
+  end
+
+  def store
+    @store ||= {}
   end
 
   def config
@@ -12,11 +18,10 @@ class Config::Loader
   end
 
   def load
-    parsed = begin
-      YAML.load(File.open(yaml_file))[name || model]
-    rescue ArgumentError => e
-      puts "Could not parse YAML: #{e.message}"
+    begin
+      store[file] = YAML.load File.open(yaml_file)
+    rescue Error => e
+      throw "Could not parse config file #{file}: #{e.message}"
     end
   end
-
 end

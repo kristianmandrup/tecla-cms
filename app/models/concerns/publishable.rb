@@ -4,9 +4,8 @@ module Publishable
   included do
     include Workflowable
 
-    field :state, type: String
     field :status, type: String
-    field :comments, type: Array
-  end
 
+    # Comments should be stored in Redis DB, keyed by model instance _id
+  end
 end
