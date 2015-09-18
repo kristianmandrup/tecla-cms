@@ -7,6 +7,8 @@ module Workflowable
     include Workflow
     include Workflow::MongoidAdapter
 
+    field :state, type: String
+
     workflow do
       state :new do
         event :submit, :transitions_to => :dev

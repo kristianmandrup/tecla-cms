@@ -5,5 +5,4 @@ module Listable
     include Mongoid::Orderable
     orderable
   end
-
 end
