@@ -5,8 +5,11 @@ class Cms::Block < Cms::Document
                     #, ,
                   #  , :images, :templates
                   # FIX!!! ,
-  blueprint 'Cms::Block'
+  # blueprint 'Cms::Block'
+  blueprint!
 
   # has_and_belongs_to_many :block_lists, class_name: 'Cms::BlockList', inverse_of: :blocks
   # belongs_to :named_block, class_name: 'Cms::NamedBlock', inverse_of: :block
 end
+
+
