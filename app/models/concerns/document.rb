@@ -31,7 +31,7 @@ module Document
     end
 
     def text_field name, opts = {}
-      field name, {type: String}.merge opts
+      field name, {type: String}.merge(opts)
     end
 
     def has_field? name
