@@ -49,11 +49,12 @@ Makes the model into a Composite model. A Composite is a model which can be a ch
 
 Makes the model into a Content item, which is shorthand for adding the following concerns:
 
--	uniquely_named,
+-	uniquely_named
+-	metadata
 -	translatable
--	validatable,
+-	validatable
 -	renderable
--	publishable,
+-	publishable
 -	blueprintable
 -	serializable
 

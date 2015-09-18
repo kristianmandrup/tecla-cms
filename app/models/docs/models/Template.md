@@ -5,7 +5,7 @@ A Template contains the `template` to render a given model. A template has a han
 
 ### Concerns
 
--	named
+-	uniquely_named
 
 A template must be uniquely named to not interfere with other templates.
 
