@@ -1,12 +1,12 @@
 # TODO: This is NOT a model. Move it!
-class Cms::Template::Resolver < ActionView::Resolver
+class Template::Resolver < ActionView::Resolver
   require 'singleton'
   include Singleton
 
   attr_accessor :finder
 
   def initialize
-    @finder = Cms::Template::TemplateFinder.instance
+    @finder = Template::TemplateFinder.instance
   end
 
   def type prefix
@@ -22,6 +22,6 @@ class Cms::Template::Resolver < ActionView::Resolver
   end
 
   def create_template record, partial, details
-    Cms::Template::Creator.new(record, partial, details).create
+    Template::Creator.new(record, partial, details).create
   end
 end

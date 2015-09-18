@@ -2,10 +2,9 @@ class Cms::Image
   include Concerned
   include_concerns :document, :translatable, :validatable,
                    :blueprintable, :publishable,
-                   :taggable, :listable, :uploadable
+                   :metadata, :listable, :uploadable
 
-
-  field :mime_description,   type: String
+  field :mime_type, type: String
 
   localize_fields :title, :description
 
@@ -23,7 +22,7 @@ class Cms::Image
   end
 
   def api_attributes
-    [:title, :mime_description, :categories, :tags, :description, :content]
+    [:title, :mime_type, :categories, :tags, :description, :content]
   end
 
   alias_method :url, :content_url

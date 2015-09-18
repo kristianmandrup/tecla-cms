@@ -3,29 +3,16 @@ module Validatable
 
   included do
     # validate_fields!
+    include ActiveModel::Validations
+
+    # advanced runtime record validation goes here!!
+    validates_with Cms::Model::Validator
   end
 
   class_methods do
-    def validate_fields!
-      self.fields.keys.each do |name|
-        validate_field name.to_sym
-      end
-    end
-
-    def validate_field name
-      required_field(name) # || ...
-    end
-
-    def required_field name
-      validates name, presence: true if required_field? name
-    end
-
-    def required_field? name
-      required_fields.include? name
-    end
-
-    def required_fields
-      [:name, :title, :content]
+    # build validation methods for this class :)
+    def fields_validation
+      Cms::Model::ValidatorBuilder.new self
     end
   end
 end

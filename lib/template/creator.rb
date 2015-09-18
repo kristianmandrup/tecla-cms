@@ -1,5 +1,5 @@
 # TODO: This is NOT a model. Move it!
-class Cms::Template::Creator
+class Template::Creator
   attr_reader :record
 
   extend Forwardable

@@ -4,6 +4,7 @@ content_item:
   - publishable
   - translatable
   - blueprintable
+  - metadata
 
 block: &content_item
 component: &content_item
@@ -11,4 +12,10 @@ component: &content_item
 image:
   - uniquely_named
   - uploadable
+
+:document, :uniquely_named, :translatable, :validatable,
+                 :blueprintable, :publishable,
+                 :taggable, :renderable,
+                 :listable #, :extendable
+                 # :images
 
