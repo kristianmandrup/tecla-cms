@@ -1,3 +1,4 @@
+# A convenience class for creating Components that are (root) pages
 class Cms::Page
   def create opts = {}
     Component.new(opts.merge(type: 'page'))
@@ -6,5 +7,4 @@ class Cms::Page
   def find opts = {}
     Component.find_by(opts.merge(type: 'page'))
   end
-
 end

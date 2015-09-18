@@ -4,7 +4,10 @@ module Categorizable
   included do
     include_concerns :document, :uniquely_named,
                      :translatable, :validatable,
-                     :renderable, :publishable
+                     :renderable, :publishable,
+                     :blueprintable, :serializable
+
+   tracks :all
   end
 end
 
