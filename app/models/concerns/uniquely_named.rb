@@ -6,6 +6,7 @@ module Named
     field :name, type: String
 
     # must be unique and always present!
-    validates :name, presence: true
+    # should have more validation, such as alpha-numeric check
+    validates :name, presence: true, uniqueness: true
   end
 end
