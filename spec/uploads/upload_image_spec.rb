@@ -1,3 +1,6 @@
+# Stubbing AWS responses:
+# - https://ruby.awsblog.com/post/Tx2SU6TYJWQQLC3/Stubbing-AWS-Responses
+# - https://ruby.awsblog.com/post/Tx116N5YWW4WJ8I/Faster-AWS-Tests-with-VCR
 describe 'Uploading files to S3' do
   let(:s3) { AWS::S3.new }
   let(:bucket) { s3.buckets['test-uploads'] }
