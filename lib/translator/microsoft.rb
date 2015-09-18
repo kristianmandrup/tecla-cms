@@ -1,9 +1,17 @@
 # TODO: This is NOT a concern. Move it out where it belongs!
-class MicrosoftTranslator < GenericTranslator
+class Translator::Microsoft < Translator::Generic
   attr_reader :client
 
   def initialize
-    @client = MicrosoftTranslator::Client.new(ENV['TRANSLATOR_CLIENT_ID'], ENV['TRANSLATOR_CLIENT_SECRET'])
+    @client = MicrosoftTranslator::Client.new client_id, secret
+  end
+
+  def secret
+    ENV['TRANSLATOR_CLIENT_SECRET']
+  end
+
+  def client_id
+    ENV['TRANSLATOR_CLIENT_ID']
   end
 
   def detect_language text

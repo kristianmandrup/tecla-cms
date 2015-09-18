@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-class CategorizedModel
-  include Concern
+class CategorizedModel < Cms::Document
   incluede_concerns :categorizable
 end
 

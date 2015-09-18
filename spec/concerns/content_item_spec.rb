@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-describe Blueprintable do
+class ContentItemModel < Cms::Document
+  incluede_concerns :content_item
+end
+
+describe ContentItem do
   pending 'todo'
 end
