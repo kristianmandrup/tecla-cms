@@ -19,7 +19,15 @@
 
 require 'factory_girl_rails'
 require 'faker'
+
 RSpec.configure do |config|
+
+  c.around(:each) do |example|
+    VCR.use_cassette(example.metadata[:full_description]) do
+      example.run
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -29,7 +37,7 @@ RSpec.configure do |config|
 
   #FactoryGirl.definition_file_paths = [File.expand_path('../factories', _FILE_)]
   #Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-  
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
