@@ -1,6 +1,6 @@
 # TODO: merge with Layout model
 class Cms::Template < Cms::Document
-  include_concerns :named
+  include_concerns :uniquely_named
 
   text_field :format, default: 'html'
   # can also be 'layout'
