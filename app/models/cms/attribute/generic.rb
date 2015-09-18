@@ -1,4 +1,4 @@
-class Cms::GenericAttribute < Cms::Document
+class Cms::Attribute::Generic < Cms::Document
   field :caption, type: String
   field :type, type: String
   field :filters, type: String
