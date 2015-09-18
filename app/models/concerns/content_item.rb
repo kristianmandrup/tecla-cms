@@ -2,7 +2,7 @@ module Categorizable
   extend ActiveSupport::Concern
 
   included do
-    include_concerns :document, :uniquely_named,
+    include_concerns :uniquely_named,
                      :translatable, :validatable,
                      :renderable, :publishable,
                      :blueprintable, :serializable
