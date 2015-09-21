@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class BlueprintModel < Cms::Document
   incluede_concerns :blueprintable

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class TemplatesModel < Cms::Document
   incluede_concerns :templates
