@@ -2,7 +2,7 @@ module Blueprintable
   extend ActiveSupport::Concern
 
   class_methods do
-    def blueprint class_name
+    def blueprint class_name=nil
       class_name ||= name
       class_eval do
         # http://stackoverflow.com/questions/6535898/mongodb-mongoid-self-reference-relationship
