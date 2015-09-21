@@ -1,4 +1,4 @@
-module Named
+module UniquelyNamed
   extend ActiveSupport::Concern
 
   included do
