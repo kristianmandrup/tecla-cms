@@ -1,4 +1,4 @@
-module Cms::List::Hashable
+module Cms::Menu::Hashable
   def set_hash
     hash = {}
     hash['type'] = self.type
