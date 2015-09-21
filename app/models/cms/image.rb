@@ -1,5 +1,5 @@
 class Cms::Image < Cms::Document
-  include_concerns :content_item, :templates
+  include_concerns :content_item, :templates,
                    :listable, :uploadable
 
   field :mime_type, type: String
