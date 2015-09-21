@@ -41,7 +41,7 @@ describe Blueprintable do
   context 'one blueprint model' do
   
     let(:prototype) { SimpleBlueprintModel.create name: 'prototype', title: 'hello world' }
-    let(:blueprint) { SimpleBlueprintModel.create prototype: prototype  }
+    let(:blueprint) { prototype.blueprints.create prototype: prototype  }
     
     it 'should transfer name value from prototype to blueprint' do
       expect(blueprint.name).not_to eq(prototype.name)
@@ -54,8 +54,8 @@ describe Blueprintable do
   
   context 'blueprint model is created with prototype' do
 
-    let(:prototype) { PrototypeModel.create name: 'proto', title: 'hello world' }
-    let(:blueprint) { BlueprintModel.create prototype: prototype }
+    let(:prototype) { BlueprintModel.create name: 'proto', title: 'hello world' }    
+    let(:blueprint) { prototype.blueprints.create prototype: prototype }
 
     it 'should transfer all field values from prototype to blueprint' do
       blueprint.fields.keys.each do |key|
