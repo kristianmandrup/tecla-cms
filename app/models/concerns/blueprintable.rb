@@ -1,5 +1,13 @@
 module Blueprintable
   extend ActiveSupport::Concern
+  
+  included do
+
+    def after_save
+      return unless prototype_changed?
+      ProtoTypeBuilder.new(self.prototype).build self
+    end
+  end
 
   class_methods do
     def blueprint class_name=nil

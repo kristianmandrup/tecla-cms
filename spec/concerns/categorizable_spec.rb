@@ -4,8 +4,8 @@ class CategorizedModel < Cms::Document
   include_concerns :categorizable
 end
 
-describe Blueprintable do
+describe Categorizable do
   it 'should have categories' do
-    pending 'todo'
+    
   end
 end
