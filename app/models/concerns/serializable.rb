@@ -1,8 +1,7 @@
-module Localizable
+module Serializable
   extend ActiveSupport::Concern
 
   included do
-
     def as_json(options={})
       super(:only => api_attributes, :methods => :type)
     end
