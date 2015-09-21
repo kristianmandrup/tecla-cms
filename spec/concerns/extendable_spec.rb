@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class ExtendableModel < Cms::Document
-  incluede_concerns :extendable
+  include_concerns :extendable
 end
 
 describe Extendable do

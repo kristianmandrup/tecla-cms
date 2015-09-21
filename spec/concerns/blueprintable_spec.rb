@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class BlueprintModel < Cms::Document
-  incluede_concerns :blueprintable
+  include_concerns :blueprintable
 end
 
 describe Blueprintable do

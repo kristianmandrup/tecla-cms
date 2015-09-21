@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class LocalizableModel < Cms::Document
-  incluede_concerns :localizable
+  include_concerns :localizable
 end
 
 describe Localizable do

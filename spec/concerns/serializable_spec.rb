@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class SerializableModel < Cms::Document
-  incluede_concerns :serializable
+  include_concerns :serializable
 end
 
 describe Serializable do

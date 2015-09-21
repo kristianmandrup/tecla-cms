@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class UniquelyNamedModel < Cms::Document
-  incluede_concerns :uniquely_named
+  include_concerns :uniquely_named
 end
 
 describe UniquelyNamed do

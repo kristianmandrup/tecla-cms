@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class ValidatableModel < Cms::Document
-  incluede_concerns :validatable
+  include_concerns :validatable
 end
 
 describe Validatable do
