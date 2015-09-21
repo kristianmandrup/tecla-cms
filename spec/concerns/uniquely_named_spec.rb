@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class UniquelyNamedModel < Cms::Document
   incluede_concerns :uniquely_named

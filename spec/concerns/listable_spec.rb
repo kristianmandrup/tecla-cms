@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class ListableModel < Cms::Document
   incluede_concerns :listable

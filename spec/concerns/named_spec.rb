@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class NamedModel < Cms::Document
   incluede_concerns :named

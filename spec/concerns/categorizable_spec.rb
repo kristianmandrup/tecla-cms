@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class CategorizedModel < Cms::Document
   incluede_concerns :categorizable

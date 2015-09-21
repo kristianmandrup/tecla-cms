@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class TranslatableModel < Cms::Document
   incluede_concerns :translatable
