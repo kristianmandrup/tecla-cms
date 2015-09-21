@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class ListableModel < Cms::Document
-  incluede_concerns :listable
+  include_concerns :listable
 end
 
 describe Listable do

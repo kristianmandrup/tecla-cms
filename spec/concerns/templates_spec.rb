@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class TemplatesModel < Cms::Document
-  incluede_concerns :templates
+  include_concerns :templates
 end
 
 describe Templates do

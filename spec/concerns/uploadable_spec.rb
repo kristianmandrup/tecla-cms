@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class UploadableModel < Cms::Document
-  incluede_concerns :uploadable
+  include_concerns :uploadable
 end
 
 describe Uploadable do

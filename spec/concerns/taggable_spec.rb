@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class TaggableModel < Cms::Document
-  incluede_concerns :taggable
+  include_concerns :taggable
 end
 
 describe Taggable do

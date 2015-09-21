@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class RenderableModel < Cms::Document
-  incluede_concerns :renderable
+  include_concerns :renderable
 end
 
 describe Renderable do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class CategorizedModel < Cms::Document
-  incluede_concerns :categorizable
+  include_concerns :categorizable
 end
 
 describe Blueprintable do

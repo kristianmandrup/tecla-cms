@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class CategorizedModel < Cms::Document
-  incluede_concerns :composite
+  include_concerns :composite
 end
 
 describe Composite do

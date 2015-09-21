@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class NamedModel < Cms::Document
-  incluede_concerns :named
+  include_concerns :named
 end
 
 describe Named do
