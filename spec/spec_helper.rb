@@ -23,7 +23,7 @@ require 'vcr/config'
 
 RSpec.configure do |config|
 
-  c.around(:each) do |example|
+  config.around(:each) do |example|
     VCR.use_cassette(example.metadata[:full_description]) do
       example.run
     end
