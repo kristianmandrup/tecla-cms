@@ -5,7 +5,10 @@ class CategorizedModel < Cms::Document
 end
 
 describe Categorizable do
-  it 'should have categories' do
+  
+  let(:categorize_model) { CategorizedModel.create categories: %W(test1 test2) }
     
+  it 'should have categories' do
+    expect(categorize_model.categories).to eq(['test1', 'test2'])
   end
 end

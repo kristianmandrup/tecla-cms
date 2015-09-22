@@ -22,8 +22,5 @@ module Composite
       skip_null ? hash.compact : hash
     end
 
-    def self.get_list_by_name(name)
-      find_by(:name => name)
-    end
   end
 end
