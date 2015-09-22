@@ -3,10 +3,10 @@ module Blueprintable
   
   included do
 
-    def after_save
-      return unless prototype_changed?
-      ProtoTypeBuilder.new(self.prototype).build self
+    after_save do
+      ProtoTypeBuilder.new(self.prototype).build self if prototype_id_changed?
     end
+
   end
 
   class_methods do
