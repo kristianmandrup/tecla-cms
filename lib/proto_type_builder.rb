@@ -1,20 +1,21 @@
 class ProtoTypeBuilder
 
-  attr_reader :prototype
+  attr_accessor :prototype
 
   def initialize prototype
-    self.prototype = prototype
+    @prototype = prototype
   end
 
   # transfer field values from prototype to target model
   # each name is a field or relation name (ie. attribute name)
   def build target
-    attributes_to_transfer.each |name|
+    attributes_to_transfer.each do |name|
       target[name] = prototype[name]
     end
   end
 
   def attributes_to_transfer
-    prototype.blueprint_attributes || prototype.fields.keys
+    return prototype.blueprint_attributes if prototype.blueprint_attributes.present?
+    prototype.fields.keys - ['_id']
   end
 end

@@ -8,13 +8,17 @@ class PrototypeModel
 
   field :title, type: String
 
+  def blueprint_attributes
+    nil
+  end
+
 end
 
 class BlueprintModel < PrototypeModel
 
   include_concerns :blueprintable
 
-  blueprint PrototypeModel
+  blueprint
 
 end
 
@@ -41,10 +45,10 @@ describe Blueprintable do
   context 'one blueprint model' do
   
     let(:prototype) { SimpleBlueprintModel.create name: 'prototype', title: 'hello world' }
-    let(:blueprint) { prototype.blueprints.create prototype: prototype  }
+    let(:blueprint) { prototype.blueprints.create  }
     
     it 'should transfer name value from prototype to blueprint' do
-      expect(blueprint.name).not_to eq(prototype.name)
+      expect(blueprint.name).to eq(prototype.name)
     end
     
     it 'should NOT transfer title value from prototype to blueprint' do
@@ -53,12 +57,12 @@ describe Blueprintable do
   end
   
   context 'blueprint model is created with prototype' do
-
-    let(:prototype) { BlueprintModel.create name: 'proto', title: 'hello world' }    
-    let(:blueprint) { prototype.blueprints.create prototype: prototype }
+    let(:prototype) { BlueprintModel.create name: 'prototype', title: 'hello world' }
+    let(:blueprint) { prototype.blueprints.create  }
 
     it 'should transfer all field values from prototype to blueprint' do
-      blueprint.fields.keys.each do |key|
+      keys = prototype.fields.keys - ['_id']
+      keys.each do |key|
         expect(blueprint[key]).to eq(prototype[key])
       end
     end
