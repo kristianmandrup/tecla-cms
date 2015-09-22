@@ -5,7 +5,6 @@ module Document
     include Mongoid::Document
     include Mongoid::Timestamps
     include Mongoid::History::Trackable
-    include Concerned
 
     def type
       self.class.name.gsub('Cms::', '')
