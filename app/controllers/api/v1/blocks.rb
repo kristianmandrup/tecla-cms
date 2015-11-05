@@ -16,7 +16,7 @@ module Api
       resource :blocks do
         desc "Return list of all blocks"
         get do
-          Cms::Block.all
+          Cms::Models::Block.all
         end
 
         desc "show a block"
