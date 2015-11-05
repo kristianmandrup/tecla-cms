@@ -14,6 +14,7 @@ require 'mongoid_orderable'
 require 'mini_magick'
 require 'carrierwave_backgrounder'
 require 'concerned'
+require 'cms-models'
 
 module Cms
 
@@ -29,3 +30,5 @@ module Cms
     Dotenv.load
   end
 end
+
+
