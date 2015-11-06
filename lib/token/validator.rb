@@ -21,7 +21,7 @@ class Token::Validator
   end
 
   def user
-    @user ||= User.find(user_id)
+    @user ||= Cms::User.find(user_id)
   end
 
   def user_id

@@ -14,7 +14,7 @@ class User::Authorizer
   end
 
   def valid_auth?
-    @user = User.authenticate(email, password)
+    @user = Cms::User.authenticate(email, password)
     user.present?
   end
 

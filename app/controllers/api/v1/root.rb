@@ -13,7 +13,7 @@ module Api
 
       # Check if token is valid
       def valid_token?
-        token_validator = TokenValidator.new(headers["Token"])
+        token_validator = Token::Validator.new(headers["Token"])
         return token_validator.valid_jwt_token?
       end
 
