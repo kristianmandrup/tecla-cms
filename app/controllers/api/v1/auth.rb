@@ -12,7 +12,7 @@ module Api
           requires :password
         end
         post 'sign_up' do
-          user = User.new({
+          user = Cms::User.new({
             email: params[:email],
             password: params[:password]
           })
@@ -27,7 +27,7 @@ module Api
           requires :password
         end
         post  '/login' do
-          {status: 'ok', response: UserAuthorizer.new(params[:email],params[:password]).authorize }
+          {status: 'ok', response: User::Authorizer.new(params[:email],params[:password]).authorize }
         end
       end
     end
