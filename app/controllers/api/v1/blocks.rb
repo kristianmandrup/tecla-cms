@@ -24,7 +24,7 @@ module Api
           requires :id, type: String
         end
         get ':id' do
-          Cms::Block.find(params[:id])
+          Cms::Models::Block.find(params[:id])
         end
         
         desc "render a block"
@@ -32,7 +32,7 @@ module Api
           requires :title, type: String
         end
         get 'render/:title' do
-          block = Cms::Block.find_by(:title => params[:title])
+          block = Cms::Models::Block.find_by(:title => params[:title])
           render_layout = block.get_template(params[:template], params[:layout]) 
           {:status => 200, :template => render_layout}
         end
@@ -46,8 +46,8 @@ module Api
           #requires :title, type: String
         end
         post  do
-          if load_and_authorize(current_api_user, :create, Cms::Block) 
-            block = Cms::Block.new(block_params)
+          if load_and_authorize(current_api_user, :create, Cms::Models::Block) 
+            block = Cms::Models::Block.new(block_params)
             block.submit!
             block.save!
             ::TranslationJob.new(block.id.to_s, "Cms::Block").enqueue(queue: :traslation) if auto_translate?
@@ -63,8 +63,8 @@ module Api
           #requires :title, type: String
         end
         put ':id' do
-          if load_and_authorize(current_api_user, :update, Cms::Block)
-            Cms::Block.find(params[:id]).update(block_params)
+          if load_and_authorize(current_api_user, :update, Cms::Models::Block)
+            Cms::Models::Block.find(params[:id]).update(block_params)
             {:success => true, :message => "Block has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to edit block'}
@@ -76,8 +76,8 @@ module Api
           requires :id, type: String
         end
         delete ':id' do
-          if load_and_authorize(current_api_user, :destroy, Cms::Block)
-            Cms::Block.find(params[:id]).destroy!
+          if load_and_authorize(current_api_user, :destroy, Cms::Models::Block)
+            Cms::Models::Block.find(params[:id]).destroy!
           else
             {error_message: 'Access denied, you are not authorize to delete block'}
           end
@@ -88,8 +88,8 @@ module Api
           requires :id, type: String
         end
         get ':id/review' do
-          if load_and_authorize(current_api_user, :stage, Cms::Block)
-            block = Cms::Block.find(params[:id])
+          if load_and_authorize(current_api_user, :stage, Cms::Models::Block)
+            block = Cms::Models::Block.find(params[:id])
             block.review!
             block.save!
             {:success => true, :message => "Block has been submitted for review."}
@@ -104,7 +104,7 @@ module Api
           requires :id, type: String
         end
         get ':id/approve' do
-          if load_and_authorize(current_api_user, :accept, Cms::Block)
+          if load_and_authorize(current_api_user, :accept, Cms::Models::Block)
             ::PublishJob.new(params[:id]).enqueue(wait_until: Time.now + 2.minutes) #TODO will pass future date once tested
             {:success => true, :message => "Block has been published."}
           else
@@ -117,8 +117,8 @@ module Api
           requires :id, type: String
         end
         get ':id/reject' do
-          if load_and_authorize(current_api_user, :reject, Cms::Block)
-            block = Cms::Block.find(params[:id])
+          if load_and_authorize(current_api_user, :reject, Cms::Models::Block)
+            block = Cms::Models::Block.find(params[:id])
             block.reject!
             block.save!
             {:success => true, :message => "Block has been rejected."}
