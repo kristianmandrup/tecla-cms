@@ -1,10 +1,10 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, class: 'Cms::User' do
     email { Faker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
 
-    
+
     factory :supar_admin do
         after(:create) {|user| user.add_role(:supar_admin)}
     end

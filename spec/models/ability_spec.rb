@@ -17,23 +17,19 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability can manage Block" do
-      expect(ability.can? :manage, Cms::Block).to be true
+      expect(ability.can? :manage, Cms::Models::Block).to be true
     end
 
     it "ability can manage Image" do
-      expect(ability.can? :manage, Cms::Image).to be true
+      expect(ability.can? :manage, Cms::Models::Image).to be true
     end
 
     it "ability can manage User" do
-      expect(ability.can? :manage, User).to be true
+      expect(ability.can? :manage, Cms::User).to be true
     end
 
     it "ability can manage List" do
-      expect(ability.can? :manage, Cms::List).to be true
-    end
-
-    it "ability can manage ListItem" do
-      expect(ability.can? :manage, Cms::ListItem).to be true
+      expect(ability.can? :manage, Cms::Models::Block::List).to be true
     end
   end
 
@@ -49,11 +45,11 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability can manage Block" do
-      expect(ability.can? :manage, Cms::Block).to be true
+      expect(ability.can? :manage, Cms::Models::Block).to be true
     end
 
     it "ability cannot manage User" do
-      expect(ability.cannot? :manage, User).to be true
+      expect(ability.cannot? :manage, Cms::User).to be true
     end
   end
 
@@ -69,15 +65,15 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability cannot manage User" do
-      expect(ability.cannot? :manage, User).to be true
+      expect(ability.cannot? :manage, Cms::User).to be true
     end
-    
+
     it "ability can manage Block" do
-      expect(ability.can? :manage, Cms::Block).to be true
+      expect(ability.can? :manage, Cms::Models::Block).to be true
     end
 
     it "ability can publish Block" do
-      expect(ability.can? :publish, Cms::Block).to be true
+      expect(ability.can? :publish, Cms::Models::Block).to be true
     end
   end
 
@@ -93,23 +89,23 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability cannot manage User" do
-      expect(ability.cannot? :manage, User).to be true
+      expect(ability.cannot? :manage, Cms::User).to be true
     end
 
     it "ability can create Block" do
-      expect(ability.can? :create, Cms::Block).to be true
+      expect(ability.can? :create, Cms::Models::Block).to be true
     end
 
     it "ability can edit Block" do
-      expect(ability.can? :edit, Cms::Block).to be true
+      expect(ability.can? :edit, Cms::Models::Block).to be true
     end
 
     it "ability can add Block" do
-      expect(ability.can? :add, Cms::Block).to be true
+      expect(ability.can? :add, Cms::Models::Block).to be true
     end
 
     it "ability can stage Block" do
-      expect(ability.can? :stage, Cms::Block).to be true
+      expect(ability.can? :stage, Cms::Models::Block).to be true
     end
   end
 
@@ -125,15 +121,15 @@ RSpec.describe Ability, type: :model do
     end
 
     it "ability cannot manage User" do
-      expect(ability.cannot? :manage, User).to be true
+      expect(ability.cannot? :manage, Cms::User).to be true
     end
 
     it "ability can read Block" do
-      expect(ability.can? :read, Cms::Block).to be true
+      expect(ability.can? :read, Cms::Models::Block).to be true
     end
 
     it "ability can edit Block" do
-      expect(ability.cannot? :update, Cms::Block).to be true
+      expect(ability.cannot? :update, Cms::Models::Block).to be true
     end
   end
 end
