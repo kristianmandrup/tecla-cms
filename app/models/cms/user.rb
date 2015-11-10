@@ -5,15 +5,15 @@ module Cms
     include Mongoid::Timestamps
     include Mongoid::History::Trackable
     include Mongoid::Orderable
-    #ROLES = %w[supar_admin admin publisher author]
-    #rolify
-    #has_and_belongs_to_many :roles
+    ROLES = %w[supar_admin admin publisher author]
+    has_and_belongs_to_many :roles
+    rolify role_cname: '::Cms::Role'
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
     ## Database authenticatable
-    field :name,               type: String, default: "" 
+    field :name,               type: String, default: ""
     field :email,              type: String, default: ""
     field :encrypted_password, type: String, default: ""
 
@@ -41,7 +41,7 @@ module Cms
     # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
     # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
     # field :locked_at,       type: Time
-    
+
      def self.authenticate(email, password)
       user = self.find_for_authentication(:email => email)
       user.valid_password?(password) ? user : nil

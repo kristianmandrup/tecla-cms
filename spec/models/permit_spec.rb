@@ -13,12 +13,12 @@ RSpec.describe Permit, type: :model do
       permit.access(subject)
     end
 
-    it "should be NOT able to edit a Cms::Block" do
-      expect(subject.can? :edit, Cms::Block).to be false
+    it "should be NOT able to edit a Cms::Models::Block" do
+      expect(subject.can? :edit, Cms::Models::Block).to be false
     end
 
-    it "should be able to read a Cms::Block" do
-      expect(subject.can? :read, Cms::Block).to be false
+    it "should be able to read a Cms::Models::Block" do
+      expect(subject.can? :read, Cms::Models::Block).to be false
     end
   end
 end
