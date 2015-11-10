@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/kuldeepaggarwal/json_token_authentication.git
+  revision: 82cc42f0ac2f6a612cc17c49f0d5f9d80dc90e9a
+  specs:
+    json_token_authentication (0.1.0)
+      activesupport (>= 3, <= 5)
+      jwt
+
 PATH
   remote: .
   specs:
@@ -419,6 +427,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   faker
+  json_token_authentication!
   mandricore_cms!
   rspec-rails
 
