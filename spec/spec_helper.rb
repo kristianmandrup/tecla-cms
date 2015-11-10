@@ -19,16 +19,8 @@
 
 require 'factory_girl_rails'
 require 'faker'
-require 'vcr/config'
 
 RSpec.configure do |config|
-
-  config.around(:each) do |example|
-    VCR.use_cassette(example.metadata[:full_description]) do
-      example.run
-    end
-  end
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

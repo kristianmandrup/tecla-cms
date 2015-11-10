@@ -76,7 +76,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.8)
     arel (6.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -101,8 +100,6 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concerned (0.1.6)
-    crack (0.4.2)
-      safe_yaml (~> 1.0.0)
     database_cleaner (1.5.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -255,7 +252,7 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
-    hashie (3.4.2)
+    hashie (3.4.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -263,7 +260,7 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.0)
     json (1.8.3)
-    jwt (1.5.1)
+    jwt (1.5.2)
     liquid (3.0.6)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -383,7 +380,6 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     rufus-scheduler (3.1.8)
-    safe_yaml (1.0.4)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -402,7 +398,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    vcr (2.9.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
     virtus (1.0.5)
@@ -412,9 +407,6 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
-    webmock (1.21.0)
-      addressable (>= 2.3.6)
-      crack (>= 0.3.2)
     workflow (1.2.0)
     xml-simple (1.1.5)
 
@@ -422,14 +414,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave_backgrounder (~> 0.4.2)
   cms-models!
   database_cleaner
   factory_girl_rails
   faker
   mandricore_cms!
   rspec-rails
-  vcr
-  webmock
 
 BUNDLED WITH
    1.10.6

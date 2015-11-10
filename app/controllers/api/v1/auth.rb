@@ -5,7 +5,7 @@ module Api
       format :json
 
       resource :auth do
-               
+
         desc "User registration"
         params do
           requires :email, regexp: /.+@.+/
@@ -19,7 +19,7 @@ module Api
           user.save!
           {status: 'ok', :message => "you have sucessfully registerd" }
         end
-        
+
 
         desc "User login"
         params do
@@ -27,7 +27,7 @@ module Api
           requires :password
         end
         post  '/login' do
-          {status: 'ok', response: User::Authorizer.new(params[:email],params[:password]).authorize }
+          {status: 'ok', response: Cms::User::Authorizer.new(params[:email],params[:password]).authorize }
         end
       end
     end
