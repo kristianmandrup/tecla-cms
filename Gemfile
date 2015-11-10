@@ -13,4 +13,4 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem "cms-models", path: '/home/rails/projects/cms-models'
+gem "cms-models", path: '../cms-models'
