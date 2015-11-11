@@ -22,7 +22,7 @@ module Api
         get ':id' do
           Cms::Models::Template.find(params[:id])
         end
-        
+
         before do
           valid_token?
         end
@@ -32,7 +32,7 @@ module Api
           requires :type, type: String
         end
         post  do
-          if load_and_authorize(current_api_user, :create, Cms::Models::Template) 
+          if load_and_authorize(:create, Cms::Models::Template)
             layout = Cms::Models::Template.new(layout_params)
             layout.submit!
             layout.save!
@@ -41,39 +41,39 @@ module Api
             {error_message: 'Access denied, you are not authorize to create Layout'}
           end
         end
-        
+
         desc "update a layout"
         params do
           requires :id, type: String
           requires :title, type: String
         end
         put ':id' do
-          if load_and_authorize(current_api_user, :update, Cms::Models::Template)
+          if load_and_authorize(:update, Cms::Models::Template)
             Cms::Models::Template.find(params[:id]).update(layout_params)
             {:success => true, :message => "layout has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to edit layout'}
           end
         end
-        
+
         desc "delete a layout"
         params do
           requires :id, type: String
         end
         delete ':id' do
-          if load_and_authorize(current_api_user, :destroy, Cms::Models::Template)
+          if load_and_authorize(:destroy, Cms::Models::Template)
             Cms::Models::Template.find(params[:id]).destroy!
           else
             {error_message: 'Access denied, you are not authorize to delete layout'}
           end
         end
-        
+
         desc "submit for review"
         params do
           requires :id, type: String
         end
         get ':id/review' do
-          if load_and_authorize(current_api_user, :stage, Cms::Models::Template)
+          if load_and_authorize(:stage, Cms::Models::Template)
             layout = Cms::Models::Template.find(params[:id])
             layout.review!
             layout.save!
@@ -82,14 +82,14 @@ module Api
             {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
-       
-        
+
+
         desc "publish a Layout"
         params do
           requires :id, type: String
         end
         get ':id/approve' do
-          if load_and_authorize(current_api_user, :accept, Cms::Models::Template)
+          if load_and_authorize(:accept, Cms::Models::Template)
             layout = Cms::Models::Template.find(params[:id])
             layout.accept!
             layout.save!
@@ -98,13 +98,13 @@ module Api
             {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
-        
+
         desc "reject a layout"
         params do
           requires :id, type: String
         end
         get ':id/reject' do
-          if load_and_authorize(current_api_user, :reject, Cms::Models::Template)
+          if load_and_authorize(:reject, Cms::Models::Template)
             layout = Cms::Models::Template.find(params[:id])
             layout.reject!
             layout.save!
@@ -113,7 +113,7 @@ module Api
             {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
-        
+
       end
     end
   end

@@ -55,7 +55,7 @@ module Api
           #requires :name, type: String
         end
         post do
-          if load_and_authorize(current_api_user, :create, Cms::List)
+          if load_and_authorize(:create, Cms::List)
             get_class_name(params[:type]).create!(list_params)
             {:success => true, :message => "list has been created!"}
           else
@@ -69,7 +69,7 @@ module Api
           #requires :name, type: String
         end
         put ':id' do
-          if load_and_authorize(current_api_user, :update, Cms::List)
+          if load_and_authorize(:update, Cms::List)
             get_class_name(params[:type]).find(params[:id]).update((list_params))
             {:success => true, :message => "list has been updated!"}
           else
@@ -82,7 +82,7 @@ module Api
           requires :id, type: String
         end
         delete ':id' do
-          if load_and_authorize(current_api_user, :destroy, Cms::List)
+          if load_and_authorize(:destroy, Cms::List)
             Cms::List.find(params[:id]).destroy!
             {:success => true, :message => "list has been deleted!"}
           else

@@ -19,10 +19,13 @@ module Api
           valid_token? and token_validator.entity
         end
 
+        def current_ability
+          @current_ability ||= Ability.new(current_api_user)
+        end
+
         #check authorization
-        def load_and_authorize(user, action, model)
-          user_ability = ::Ability.new(user)
-          user_ability.can? action, model
+        def load_and_authorize(action, model)
+          current_ability.can? action, model
         end
 
         def token_validator

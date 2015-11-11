@@ -21,7 +21,7 @@ module Api
         get ':id' do
           Cms::Models::Image.find(params[:id])
         end
-        
+
         before do
           valid_token?
         end
@@ -32,7 +32,7 @@ module Api
           #TODO requires :content, type: String
         end
         post  do
-          if load_and_authorize(current_api_user, :create, Cms::Image)
+          if load_and_authorize(:create, Cms::Image)
             image = Cms::Models::Image.new(image_params)
             image.content = ActionDispatch::Http::UploadedFile.new(params[:content]) if params[:content]
             image.submit!
@@ -42,27 +42,27 @@ module Api
             {error_message: 'Access denied, you are not authorize to create Image'}
           end
         end
-        
+
         desc "update a image"
         params do
           requires :id, type: String
           #requires :title, type: String
         end
         put ':id' do
-          if load_and_authorize(current_api_user, :update, Cms::Models::Image)
+          if load_and_authorize(:update, Cms::Models::Image)
             Cms::Models::Image.find(params[:id]).update(image_params)
             {:success => true, :message => "image has been updated!"}
           else
             {error_message: 'Access denied, you are not authorize to edit image'}
           end
         end
-        
+
         desc "delete a image"
         params do
           requires :id, type: String
         end
         delete ':id' do
-          if load_and_authorize(current_api_user, :destroy, Cms::Models::Image)
+          if load_and_authorize(:destroy, Cms::Models::Image)
             Cms::Models::Image.find(params[:id]).destroy!
             {:success => true, :message => "image has been deleted!"}
           else
@@ -75,7 +75,7 @@ module Api
           requires :id, type: String
         end
         get ':id/review' do
-          if load_and_authorize(current_api_user, :stage, Cms::Models::Image)
+          if load_and_authorize(:stage, Cms::Models::Image)
             image = Cms::Models::Image.find(params[:id])
             image.review!
             image.save!
@@ -84,13 +84,13 @@ module Api
             {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
-        
+
         desc "publish a image"
         params do
           requires :id, type: String
         end
         get ':id/approve' do
-          if load_and_authorize(current_api_user, :accept, Cms::Models::Image )
+          if load_and_authorize(:accept, Cms::Models::Image )
             block = Cms::Models::Image.find(params[:id])
             block.accept!
             block.save!
@@ -99,13 +99,13 @@ module Api
             {error_message: 'Access denied, you are not authorize to complete this action'}
           end
         end
-        
+
         desc "reject a image"
         params do
           requires :id, type: String
         end
         get ':id/reject' do
-          if load_and_authorize(current_api_user, :reject, Cms::Models::Image)
+          if load_and_authorize(:reject, Cms::Models::Image)
             block = Cms::Models::Image.find(params[:id])
             block.reject!
             block.save!
