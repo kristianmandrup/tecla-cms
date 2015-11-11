@@ -1,3 +1,5 @@
+require File.expand_path('../../../../lib/user/authorizer', __dir__)
+
 module Api
   module V1
     class Auth < Grape::API

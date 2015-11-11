@@ -11,7 +11,11 @@ module Api
         end
         # Return invalid token json
         def invalid_token
-          { json: { message: 'Invalid Tokens' } }
+          { json: { message: 'Invalid Token' } }
+        end
+
+        def authenticate!
+          error!(invalid_token, 401) unless current_api_user
         end
 
         #current_user
@@ -41,6 +45,7 @@ module Api
 
       mount Api::V1::Blocks
       mount Api::V1::Lists
+      mount Api::V1::Menus
       mount Api::V1::Pages
       mount Api::V1::Images
       mount Api::V1::Layouts
