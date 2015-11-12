@@ -3,6 +3,7 @@ module Api
     class Menus < Grape::API
       version 'v1'
       format :json
+      formatter :json, Grape::Formatter::ActiveModelSerializers
 
       helpers do
         private
@@ -20,6 +21,7 @@ module Api
           end
 
           def update_resource
+            authenticate!
             authorize_resource!(:update)
             if @resource.update(menu_params)
               { status: 200, message: 'menu updated successfully' }
@@ -36,8 +38,8 @@ module Api
 
       resource :menus do
         desc 'Return all menus'
-        get do
-          Cms::Models::Menu.set_hash
+        get each_serializer: API::V1::MenuSerializer do
+          Cms::Models::Menu.root
         end
 
         desc 'create a new menu'
@@ -60,11 +62,9 @@ module Api
           before { load_resource! }
 
           desc 'show a menu'
-          get do
-            @resource.set_hash
+          get serializer: API::V1::MenuSerializer do
+            @resource
           end
-
-          before { authenticate! }
 
           desc 'update a menu'
           put do
@@ -78,6 +78,7 @@ module Api
 
           desc 'delete a menu'
           delete do
+            authenticate!
             authorize_resource!(:destroy)
             if @resource.destroy
               { status: 200, message: 'menu deleted successfully' }
