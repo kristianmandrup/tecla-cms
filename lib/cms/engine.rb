@@ -14,8 +14,7 @@ module Cms
   # alternative: Rails.root.join('lib')
   class Engine < ::Rails::Engine
     isolate_namespace Cms
-    config.autoload_paths << "#{config.root}/lib"
-    config.autoload_paths << "#{config.root}/validators"
+    config.autoload_paths << config.root.join('lib')
     config.i18n.available_locales = [:en, :es, :fr, :de]
     config.time_zone = 'IST'
     Dotenv.load

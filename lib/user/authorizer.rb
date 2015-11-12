@@ -1,18 +1,18 @@
 module Cms
   class User
     class Authorizer
-      attr_reader :email, :password
+      attr_reader :email, :password, :user
 
-      def initialize email, password
-        @email, @password = [email, password]
+      def initialize(email, password)
+        @email, @password = email, password
       end
 
       def authorize
-        valid_auth? ? Token::Responder.new(user).valid_token : Token::Responder.new(user).invalid_token
+        valid_auth? ? responder.valid_token : responder.invalid_token
       end
 
-      def user
-        @user
+      def responder
+        JsonTokenAuthentication::Responder.new(user)
       end
 
       def valid_auth?
