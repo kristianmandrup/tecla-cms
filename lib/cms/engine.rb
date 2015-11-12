@@ -6,6 +6,7 @@ require 'cancancan'
 require 'rolify'
 require 'concerned'
 require 'cms-models'
+require 'json_token_authentication'
 
 module Cms
 

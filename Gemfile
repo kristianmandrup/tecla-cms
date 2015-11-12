@@ -14,4 +14,3 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 gem 'carrierwave_backgrounder', '~> 0.4.2'
 gem "cms-models", path: '../cms-models'
-gem 'json_token_authentication', github: 'kuldeepaggarwal/json_token_authentication'
