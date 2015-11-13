@@ -6,7 +6,7 @@ module API
       end
 
       def set_locale
-        I18n.locale = params[:locale] || I18n.default_locale
+        I18n.locale = params[API::V1.local_param_name] || I18n.default_locale
       end
 
       def invalid_token
