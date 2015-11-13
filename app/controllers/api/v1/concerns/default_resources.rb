@@ -1,4 +1,4 @@
-module Api
+module API
   module V1
     module DefaultResources
       extend ActiveSupport::Concern
@@ -14,8 +14,6 @@ module Api
       end
 
       class InheritiableResources
-        extend Forwardable
-
         attr_reader :api
         def initialize(api, serializer, model_klass)
           @api = api
