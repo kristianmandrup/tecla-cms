@@ -6,6 +6,8 @@ require 'cancancan'
 require 'rolify'
 require 'concerned'
 require 'cms-models'
+require 'json_token_authentication'
+require 'grape-active_model_serializers'
 
 module Cms
 
