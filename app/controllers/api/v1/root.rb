@@ -1,5 +1,12 @@
 module Api
   module V1
+    extend ActiveSupport::Autoload
+
+    autoload_under 'concerns' do
+      autoload :DefaultOptions
+      autoload :DefaultResources
+    end
+
     class Root < Grape::API
 
       helpers do
@@ -46,6 +53,7 @@ module Api
       mount Api::V1::Blocks
       mount Api::V1::Lists
       mount Api::V1::Menus
+      mount Api::V1::MenuItems
       mount Api::V1::Pages
       mount Api::V1::Images
       mount Api::V1::Layouts
