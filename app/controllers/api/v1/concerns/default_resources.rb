@@ -14,8 +14,6 @@ module API
       end
 
       class InheritiableResources
-        extend Forwardable
-
         attr_reader :api
         def initialize(api, serializer, model_klass)
           @api = api
