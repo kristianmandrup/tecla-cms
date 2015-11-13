@@ -90,6 +90,7 @@ GEM
     bson (3.2.6)
     bson_ext (1.5.1)
     builder (3.2.2)
+    byebug (8.0.1)
     cancancan (1.12.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -425,6 +426,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   carrierwave_backgrounder (~> 0.4.2)
   cms-models!
   database_cleaner
