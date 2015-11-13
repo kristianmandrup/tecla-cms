@@ -1,8 +1,8 @@
-module Api
+module API
   module V1
     class Users < Grape::API
-      include Api::V1::DefaultOptions
-      include Api::V1::DefaultResources
+      include API::V1::DefaultOptions
+      include API::V1::DefaultResources
 
       resources_for(serializer: API::V1::UserSerializer, model_klass: Cms::User)
 

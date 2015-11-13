@@ -1,63 +1,25 @@
-module Api
+module API
   module V1
     extend ActiveSupport::Autoload
 
     autoload_under 'concerns' do
       autoload :DefaultOptions
       autoload :DefaultResources
+      autoload :DefaultHelpers
     end
 
     class Root < Grape::API
-
-      helpers do
-        extend Forwardable
-        def_delegator :token_validator, :valid_token?
-
-        def set_locale
-          I18n.locale = params[:locale] || I18n.default_locale
-        end
-        # Return invalid token json
-        def invalid_token
-          { json: { message: 'Invalid Token' } }
-        end
-
-        def authenticate!
-          error!(invalid_token, 401) unless current_api_user
-        end
-
-        #current_user
-        def current_api_user
-          valid_token? and token_validator.entity
-        end
-
-        def current_ability
-          @current_ability ||= Ability.new(current_api_user)
-        end
-
-        #check authorization
-        def load_and_authorize(action, model)
-          current_ability.can? action, model
-        end
-
-        def token_validator
-          @token_validator ||= JsonTokenAuthentication::Validator.new(headers[token_header_name])
-        end
-
-        def token_header_name
-          'Token'
-        end
-      end
-
+      helpers(DefaultHelpers)
       before { set_locale }
 
-      mount Api::V1::Blocks
-      mount Api::V1::Images
-      mount Api::V1::MenuItems
-      mount Api::V1::Menus
-      mount Api::V1::Lists
-      mount Api::V1::Layouts
-      mount Api::V1::Pages
-      mount Api::V1::Users
+      mount API::V1::Blocks
+      mount API::V1::Images
+      mount API::V1::MenuItems
+      mount API::V1::Menus
+      mount API::V1::Lists
+      mount API::V1::Layouts
+      mount API::V1::Pages
+      mount API::V1::Users
     end
   end
 end
