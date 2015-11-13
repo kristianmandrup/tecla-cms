@@ -32,7 +32,7 @@ module Api
           #TODO requires :content, type: String
         end
         post  do
-          if load_and_authorize(:create, Cms::Image)
+          if load_and_authorize(:create, Cms::Models::Image)
             image = Cms::Models::Image.new(image_params)
             image.content = ActionDispatch::Http::UploadedFile.new(params[:content]) if params[:content]
             image.submit!
