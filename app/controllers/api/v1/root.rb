@@ -1,13 +1,9 @@
+require_dependency File.expand_path('concerns/default_options', __dir__)
+require_dependency File.expand_path('concerns/default_resources', __dir__)
+require_dependency File.expand_path('concerns/default_helpers', __dir__)
+
 module API
   module V1
-    extend ActiveSupport::Autoload
-
-    autoload_under 'concerns' do
-      autoload :DefaultOptions
-      autoload :DefaultResources
-      autoload :DefaultHelpers
-    end
-
     class Root < Grape::API
       helpers(DefaultHelpers)
       before { set_locale }
