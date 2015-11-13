@@ -51,12 +51,13 @@ module Api
       before { set_locale }
 
       mount Api::V1::Blocks
-      mount Api::V1::Lists
-      mount Api::V1::Menus
-      mount Api::V1::MenuItems
-      mount Api::V1::Pages
       mount Api::V1::Images
+      mount Api::V1::MenuItems
+      mount Api::V1::Menus
+      mount Api::V1::Lists
       mount Api::V1::Layouts
+      mount Api::V1::Pages
+      mount Api::V1::Users
     end
   end
 end

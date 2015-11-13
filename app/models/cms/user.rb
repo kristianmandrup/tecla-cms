@@ -42,7 +42,9 @@ module Cms
     # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
     # field :locked_at,       type: Time
 
-     def self.authenticate(email, password)
+    validates_presence_of :password_confirmation, if: :password
+
+    def self.authenticate(email, password)
       user = self.find_for_authentication(:email => email)
       user.valid_password?(password) ? user : nil
     end
