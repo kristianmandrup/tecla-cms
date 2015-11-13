@@ -1,4 +1,4 @@
-require File.expand_path('../../../../lib/user/authorizer', __dir__)
+require_dependency File.expand_path('../../../../lib/user/authorizer', __dir__)
 
 module API
   module V1
@@ -29,7 +29,10 @@ module API
           requires :password
         end
         post  '/login' do
-          {status: 'ok', response: Cms::User::Authorizer.new(params[:email],params[:password]).authorize }
+          {
+            status: 'ok',
+            response: Cms::User::Authorizer.new(params[:email], params[:password]).authorize
+          }
         end
       end
     end
