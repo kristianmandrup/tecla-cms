@@ -1,4 +1,4 @@
-module Api
+module API
   module V1
     class Lists < Grape::API
       version 'v1'

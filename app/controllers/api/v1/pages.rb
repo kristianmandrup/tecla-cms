@@ -1,12 +1,12 @@
-module Api
+module API
   module V1
     class Pages < Grape::API
       version 'v1'
       format :json
-      
+
       resource :pages do
         desc "Return list of all pages"
-        get do          
+        get do
           pages = Cms::Models::Page.all
           pages.map do |p|
             { p.name =>  p.nested_item }
@@ -21,7 +21,7 @@ module Api
           response = Cms::Models::Page.find_by(:name => params[:id])
           response.nested_item
         end
-        
+
         before do
           valid_token?
         end
@@ -35,7 +35,7 @@ module Api
           })
         { id: page.id.to_s, name: page.name, status: 200}
         end
-        
+
         desc "update a page"
         params do
           requires :id, type: String
@@ -47,12 +47,12 @@ module Api
             })
             {:success => true, :message => "Page has been updated!"}
         end
-        
+
         desc "delete a page"
         params do
           requires :id, type: String
         end
-        delete ':id' do 
+        delete ':id' do
           Cms::Models::Page.find(params[:id]).destroy!
         end
       end

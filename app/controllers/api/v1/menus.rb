@@ -1,8 +1,8 @@
-module Api
+module API
   module V1
     class Menus < Grape::API
-      include Api::V1::DefaultOptions
-      include Api::V1::DefaultResources
+      include API::V1::DefaultOptions
+      include API::V1::DefaultResources
 
       resources_for(serializer: API::V1::MenuSerializer, model_klass: Cms::Models::Menu)
 
