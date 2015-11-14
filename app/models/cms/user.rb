@@ -5,9 +5,11 @@ module Cms
     include Mongoid::Timestamps
     include Mongoid::History::Trackable
     include Mongoid::Orderable
-    ROLES = %w[supar_admin admin publisher author]
+
+    ROLES = %w[admin publisher author super_admin]
     has_and_belongs_to_many :roles
     rolify role_cname: '::Cms::Role'
+
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
