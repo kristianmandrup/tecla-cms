@@ -12,33 +12,5 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'pry'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
-
-# Mongodb gems
-gem "mongoid", '~> 5.0.0.beta'
-
-# Gems Need to Upload Images on S3
-gem 'carrierwave'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'fog'
-gem 'fog-aws'
-
-#devise
-gem 'bson_ext'
-gem 'devise'
-gem 'rolify'
-gem 'cancancan', '~> 1.12.0'
-gem 'mongoid-history'
-gem 'mongoid_orderable'
-
-
+gem 'carrierwave_backgrounder', '~> 0.4.2'
+gem "cms-models", path: '../cms-models'

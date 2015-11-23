@@ -1,5 +1,7 @@
-TeclaCms::Engine.routes.draw do
-  devise_for :users
-  resources :pages
-  mount Api::Root => '/'
+Cms::Engine.routes.draw do
+  root to: "pages#index"
+  devise_for :users, class_name: "Cms::User",  module: :devise
+
+  #resources :pages
+  mount API::Root => '/'
 end

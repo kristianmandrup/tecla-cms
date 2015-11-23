@@ -1,47 +1,21 @@
-module Api  
+require_dependency File.expand_path('concerns/default_options', __dir__)
+require_dependency File.expand_path('concerns/default_resources', __dir__)
+require_dependency File.expand_path('concerns/default_helpers', __dir__)
+
+module API
   module V1
     class Root < Grape::API
+      helpers(DefaultHelpers)
+      before { set_locale }
 
-    helpers do
-      def set_locale
-          I18n.locale = params[:locale]  || I18n.default_locale
-      end
-      # Return invalid token json
-      def invalid_token
-        {json: {:message => "Invalid Tokens"}}
-      end
-
-      # Check if token is valid
-      def valid_token?
-        token_validator = TokenValidator.new(headers["Token"])
-        return token_validator.valid_jwt_token?
-      end
-
-      #current_user
-      def current_api_user
-        if valid_token?
-          user = TokenValidator.new(headers['Token']).user 
-        end
-        user
-      end
-
-      #check authorization
-      def load_and_authorize(user, action, model)
-        user_ability = ::Ability.new(user)
-        user_ability.can? action, model
-      end
-    end
-
-    before do
-      set_locale
-    end
-
-      mount Api::V1::Blocks
-      mount Api::V1::Lists
-      mount Api::V1::Pages
-      mount Api::V1::Images
-      mount Api::V1::Layouts
-
+      mount API::V1::Blocks
+      mount API::V1::Images
+      mount API::V1::MenuItems
+      mount API::V1::Menus
+      mount API::V1::Lists
+      mount API::V1::Layouts
+      mount API::V1::Pages
+      mount API::V1::Users
     end
   end
 end
